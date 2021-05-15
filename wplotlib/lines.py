@@ -3,7 +3,7 @@
 from matplotlib import pyplot as plt
 import numpy as np
 
-class line_plot:
+class lines:
 	def __init__(self, title_font=16, xfont=16, yfont=16):
 		self.title_font = title_font
 		self.xfont = xfont
