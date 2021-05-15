@@ -1,0 +1,12 @@
+
+Update the sdist folder
+
+	python setup.py sdist
+
+Make sure twin is installed
+
+	pip install twine
+
+Upload
+
+	twine upload dist/*
