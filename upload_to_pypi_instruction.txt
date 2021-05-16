@@ -10,6 +10,11 @@ Make sure twin is installed
 
 	pip install twine
 
-Upload
+Upload Test 
+
+	twine upload --repository testpypi dist/*
+
+Upload Real
 
 	twine upload dist/*
+

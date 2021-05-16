@@ -1,15 +1,35 @@
 #!/usr/bin/env python
+"""
+My code with plotting
+----------------------------
+Hello world
+"""
 
 from matplotlib import pyplot as plt
 import numpy as np
 
+def square(n):
+	"""Takes in a number n, returns the square of n"""
+	return n**2
+
 class lines:
+	"""A naive Bayesian spam filter"""
 	def __init__(self, title_font=16, xfont=16, yfont=16):
+		"""calculates the probability that 'token' is found in spam emails
+		
+		:param token: (str)
+		:return: (float) probability 'token' is spam based on training emails
+		"""
 		self.title_font = title_font
 		self.xfont = xfont
 		self.yfont = yfont
 
 	def plot_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None):
+		"""calculates the probability that 'token' is found in spam emails
+		
+		:param token: (str)
+		:return: (float) probability 'token' is spam based on training emails
+		"""
 		self.add_plot(X,Y)
 		self.set_title(title, fontsize=self.title_font)
 		self.set_xlabel(xlabel, fontsize=self.xfont)

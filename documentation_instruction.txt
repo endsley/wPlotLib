@@ -1,0 +1,32 @@
+
+go into the code direction and make a new directory
+
+	mkdir docs
+
+go into docs and run
+
+	sphinx-quickstart --ext-autodoc --ext-viewcode --ext-githubpages
+
+go into index.rst and add a line 
+
+	modules
+
+run
+	sphinx_rtd_theme
+
+go into conf.py, uncomment
+
+	import os
+	import sys
+	sys.path.insert(0, os.path.abspath('..'))		<-  make sure you pick the code directory, which is normally ..
+
+change html_theme = 'alabaster' to 
+
+	html_theme = 'sphinx_rtd_theme' 
+
+run
+	sphinx-apidoc -o . ..							<- . is the current directory, and .. is the code directory
+
+run
+	make html										<- docs should be generated in _build
+

@@ -3,4 +3,4 @@ README
 setup.cfg
 setup.py
 wplotlib/__init__.py
-wplotlib/line_plot.py
+wplotlib/lines.py
