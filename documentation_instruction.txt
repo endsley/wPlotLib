@@ -24,6 +24,11 @@ change html_theme = 'alabaster' to
 
 	html_theme = 'sphinx_rtd_theme' 
 
+
+change member ordering inside conf.py
+
+	autodoc_member_order = 'bysource'
+
 run
 	sphinx-apidoc -o . ..							<- . is the current directory, and .. is the code directory
 

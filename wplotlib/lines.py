@@ -1,19 +1,10 @@
 #!/usr/bin/env python
-"""
-My code with plotting
-----------------------------
-Hello world
-"""
-
 from matplotlib import pyplot as plt
 import numpy as np
 
-def square(n):
-	"""Takes in a number n, returns the square of n"""
-	return n**2
 
 class lines:
-	"""A naive Bayesian spam filter"""
+	"""A class that generates basic line plots"""
 	def __init__(self, title_font=16, xfont=16, yfont=16):
 		"""calculates the probability that 'token' is found in spam emails
 		
