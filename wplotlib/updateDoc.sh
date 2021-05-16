@@ -1,8 +1,8 @@
 #!/bin/bash
 
+mv __init__.py ..
 rm docs/wplotlib.rst 
 rm docs/modules.rst
-mv __init__.py ..
 
 cd docs
 make clean

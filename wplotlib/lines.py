@@ -1,4 +1,16 @@
 #!/usr/bin/env python
+"""
+.. code-block:: python
+  :linenos:
+
+  textstr = "\\n".join(( r"$\mu=%.2f$" % (0.1, ), r"$\mathrm{median}=%.2f$" % (0, ), r"$\sigma=%.2f$" % (33, )))
+  x = np.linspace(0, 10, 1000)
+  y = np.sin(x)
+  
+  lp = line_plot()
+  lp.plot_line(x, y, "Title Here", "X axis", "Y axis", imgText=textstr)#, outpath)
+"""
+
 from matplotlib import pyplot as plt
 import numpy as np
 
@@ -6,20 +18,20 @@ import numpy as np
 class lines:
 	"""A class that generates basic line plots"""
 	def __init__(self, title_font=16, xfont=16, yfont=16):
-		"""calculates the probability that 'token' is found in spam emails
+		"""calculates the probability that "token" is found in spam emails
 		
 		:param token: (str)
-		:return: (float) probability 'token' is spam based on training emails
+		:return: (float) probability "token" is spam based on training emails
 		"""
 		self.title_font = title_font
 		self.xfont = xfont
 		self.yfont = yfont
 
 	def plot_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None):
-		"""calculates the probability that 'token' is found in spam emails
+		"""calculates the probability that "token" is found in spam emails
 		
 		:param token: (str)
-		:return: (float) probability 'token' is spam based on training emails
+		:return: (float) probability "token" is spam based on training emails
 		"""
 		self.add_plot(X,Y)
 		self.set_title(title, fontsize=self.title_font)
