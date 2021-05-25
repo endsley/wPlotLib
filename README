@@ -22,5 +22,3 @@ Example
    
    lp = lines()
    lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr)#, outpath)	
-
-

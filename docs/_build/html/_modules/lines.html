@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>lines &mdash; wplotlib  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> wplotlib
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">wplotlib</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">wplotlib</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>lines</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for lines</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">.. code-block:: python</span>
+<span class="sd">  :linenos:</span>
+
+<span class="sd">  textstr = &quot;\\n&quot;.join(( r&quot;$\mu=%.2f$&quot; % (0.1, ), r&quot;$\mathrm{median}=%.2f$&quot; % (0, ), r&quot;$\sigma=%.2f$&quot; % (33, )))</span>
+<span class="sd">  x = np.linspace(0, 10, 1000)</span>
+<span class="sd">  y = np.sin(x)</span>
+<span class="sd">  </span>
+<span class="sd">  lp = line_plot()</span>
+<span class="sd">  lp.plot_line(x, y, &quot;Title Here&quot;, &quot;X axis&quot;, &quot;Y axis&quot;, imgText=textstr)#, outpath)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<div class="viewcode-block" id="lines"><a class="viewcode-back" href="../lines.html#lines.lines">[docs]</a><span class="k">class</span> <span class="nc">lines</span><span class="p">:</span>
+	<span class="sd">&quot;&quot;&quot;A class that generates basic line plots&quot;&quot;&quot;</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title_font</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">xfont</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">yfont</span><span class="o">=</span><span class="mi">16</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;calculates the probability that &quot;token&quot; is found in spam emails</span>
+<span class="sd">		</span>
+<span class="sd">		:param token: (str)</span>
+<span class="sd">		:return: (float) probability &quot;token&quot; is spam based on training emails</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">title_font</span> <span class="o">=</span> <span class="n">title_font</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">xfont</span> <span class="o">=</span> <span class="n">xfont</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">yfont</span> <span class="o">=</span> <span class="n">yfont</span>
+
+<div class="viewcode-block" id="lines.plot_line"><a class="viewcode-back" href="../lines.html#lines.lines.plot_line">[docs]</a>	<span class="k">def</span> <span class="nf">plot_line</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">xlabel</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">,</span> <span class="n">imgText</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">outpath</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+		<span class="sd">&quot;&quot;&quot;calculates the probability that &quot;token&quot; is found in spam emails</span>
+<span class="sd">		</span>
+<span class="sd">		:param token: (str)</span>
+<span class="sd">		:return: (float) probability &quot;token&quot; is spam based on training emails</span>
+<span class="sd">		&quot;&quot;&quot;</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">add_plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">title_font</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">xfont</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">yfont</span><span class="p">)</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">add_text</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">imgText</span><span class="p">)</span>
+
+		<span class="k">if</span> <span class="n">outpath</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+		<span class="k">else</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">outpath</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="lines.add_text"><a class="viewcode-back" href="../lines.html#lines.lines.add_text">[docs]</a>	<span class="k">def</span> <span class="nf">add_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">textstr</span><span class="p">,</span> <span class="n">α</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">β</span><span class="o">=</span><span class="mf">0.95</span><span class="p">):</span>
+		<span class="k">if</span> <span class="n">textstr</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span>
+		<span class="n">mX</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+		<span class="n">mY</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span>
+
+		<span class="n">xLoc</span> <span class="o">=</span> <span class="n">α</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="n">mX</span><span class="p">)</span> <span class="o">+</span> <span class="n">mX</span>
+		<span class="n">yLoc</span> <span class="o">=</span> <span class="n">β</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">Y</span><span class="p">)</span> <span class="o">-</span> <span class="n">mY</span><span class="p">)</span> <span class="o">+</span> <span class="n">mY</span>
+
+		<span class="n">props</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;wheat&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+		<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">xLoc</span><span class="p">,</span> <span class="n">yLoc</span><span class="p">,</span> <span class="n">textstr</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">bbox</span><span class="o">=</span><span class="n">props</span><span class="p">)</span></div>
+
+
+
+	<span class="c1">#plt.axis(&#39;tight&#39;);</span>
+<div class="viewcode-block" id="lines.set_title"><a class="viewcode-back" href="../lines.html#lines.lines.set_title">[docs]</a>	<span class="k">def</span> <span class="nf">set_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">):</span>
+		<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="lines.set_xlabel"><a class="viewcode-back" href="../lines.html#lines.lines.set_xlabel">[docs]</a>	<span class="k">def</span> <span class="nf">set_xlabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">xlabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">):</span>
+		<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="lines.set_ylabel"><a class="viewcode-back" href="../lines.html#lines.lines.set_ylabel">[docs]</a>	<span class="k">def</span> <span class="nf">set_ylabel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ylabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">):</span>
+		<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">fontsize</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="lines.add_plot"><a class="viewcode-back" href="../lines.html#lines.lines.add_plot">[docs]</a>	<span class="k">def</span> <span class="nf">add_plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">):</span>
+		<span class="c1">#color=&#39;blue&#39;        # specify color by name</span>
+		<span class="c1">#color=&#39;g&#39;           # short color code (rgbcmyk)</span>
+		<span class="c1">#color=&#39;0.75&#39;        # Grayscale between 0 and 1</span>
+		<span class="c1">#color=&#39;#FFDD44&#39;     # Hex code (RRGGBB from 00 to FF)</span>
+		<span class="c1">#color=(1.0,0.2,0.3) # RGB tuple, values 0 to 1</span>
+		<span class="c1">#color=&#39;chartreuse&#39;; # all HTML color names supported</span>
+
+		<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="lines.show"><a class="viewcode-back" href="../lines.html#lines.lines.show">[docs]</a>	<span class="k">def</span> <span class="nf">show</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+		<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="lines.plot_line_with_error_area"><a class="viewcode-back" href="../lines.html#lines.lines.plot_line_with_error_area">[docs]</a>	<span class="k">def</span> <span class="nf">plot_line_with_error_area</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">show</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+		<span class="c1">#x = np.linspace(0, 30, 30)</span>
+		<span class="c1">#y = np.sin(x/6*np.pi)</span>
+		<span class="c1">#error = np.random.normal(0.1, 0.02, size=y.shape)</span>
+		<span class="c1">#y += np.random.normal(0, 0.1, size=y.shape)</span>
+		
+		<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;k-&#39;</span><span class="p">)</span>
+		<span class="n">plt</span><span class="o">.</span><span class="n">fill_between</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="n">error</span><span class="p">,</span> <span class="n">y</span><span class="o">+</span><span class="n">error</span><span class="p">)</span>
+		<span class="k">if</span> <span class="n">show</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+	<span class="n">textstr</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span> <span class="sa">r</span><span class="s1">&#39;$\mu=</span><span class="si">%.2f</span><span class="s1">$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="p">),</span> <span class="sa">r</span><span class="s1">&#39;$\mathrm</span><span class="si">{median}</span><span class="s1">=</span><span class="si">%.2f</span><span class="s1">$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">),</span> <span class="sa">r</span><span class="s1">&#39;$\sigma=</span><span class="si">%.2f</span><span class="s1">$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">33</span><span class="p">,</span> <span class="p">)))</span>
+	<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+	<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+	<span class="n">lp</span> <span class="o">=</span> <span class="n">line_plot</span><span class="p">()</span>
+	<span class="n">lp</span><span class="o">.</span><span class="n">plot_line</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;Title Here&#39;</span><span class="p">,</span> <span class="s1">&#39;X axis&#39;</span><span class="p">,</span> <span class="s1">&#39;Y axis&#39;</span><span class="p">,</span> <span class="n">imgText</span><span class="o">=</span><span class="n">textstr</span><span class="p">)</span><span class="c1">#, outpath)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Chieh Wu.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
