@@ -1,5 +1,15 @@
 
 User Name is : Chieh.8772
+Password can be found on chrome password settings on pypi
+
+
+Go into setup.py
+
+	update version to the next one
+
+Go into Github, create a new tag
+
+	copy the new tag link into url inside setup.py
 
 
 Update the sdist folder
