@@ -1,12 +1,9 @@
 # wplotlib
 ## Chieh's quick plot library
-
 ## Pip Installation
-
 ```sh
 pip install wplotlib
 ```
-
 ```python
 from wplotlib import lines
 	
@@ -17,3 +14,4 @@ y = np.sin(x)
 lp = lines()
 lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr)#, outpath)	
 ```
+

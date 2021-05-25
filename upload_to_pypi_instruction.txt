@@ -23,8 +23,10 @@ Make sure twin is installed
 Upload Test 
 
 	twine upload --repository testpypi dist/*
+	twine check dist/*
 
 Upload Real
 
 	twine upload dist/*
+
 

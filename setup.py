@@ -4,7 +4,7 @@ from distutils.core import setup
 # read the contents of your README file
 from os import path
 this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f: 
+with open(path.join(this_directory, 'README'), encoding='utf-8') as f: 
 	long_description = f.read()
 
 setup(
@@ -13,8 +13,8 @@ setup(
   version = '0.03',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'A library that simplifies some basic plotting.',   # Give a short description about your library
-  long_description=long_description,
   long_description_content_type='text/markdown',  
+  long_description=long_description,
   author = 'Chieh Wu',                   # Type in your name
   author_email = 'chieh.t.wu@gmail.com',      # Type in your E-Mail
   url = 'https://github.com/endsley/wPlotLib.git',   # Provide either the link to your github or to your website
