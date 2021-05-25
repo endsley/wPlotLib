@@ -1,10 +1,11 @@
 from distutils.core import setup
+#from setuptools import setup
 
 
 # read the contents of your README file
 from os import path
 this_directory = path.abspath(path.dirname(__file__))
-with open(path.join(this_directory, 'README'), encoding='utf-8') as f: 
+with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f: 
 	long_description = f.read()
 
 setup(
@@ -20,6 +21,7 @@ setup(
   url = 'https://github.com/endsley/wPlotLib.git',   # Provide either the link to your github or to your website
   download_url = 'https://github.com/endsley/wPlotLib/archive/refs/tags/0.03.tar.gz',    # I explain this later on
   keywords = ['plot', 'data'],   # Keywords that define your package best
+  include_package_data=False,
   install_requires=[            # I get to this in a second
           'matplotlib',
           'numpy',

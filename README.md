@@ -4,6 +4,8 @@
 ```sh
 pip install wplotlib
 ```
+
+## Example Usage
 ```python
 from wplotlib import lines
 	

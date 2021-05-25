@@ -33,6 +33,8 @@ class lines:
 		:param token: (str)
 		:return: (float) probability "token" is spam based on training emails
 		"""
+		if X is None: X = np.arange(1, len(Y)+1)
+
 		self.add_plot(X,Y)
 		self.set_title(title, fontsize=self.title_font)
 		self.set_xlabel(xlabel, fontsize=self.xfont)
