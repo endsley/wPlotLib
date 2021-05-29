@@ -5,7 +5,7 @@
 pip install wplotlib
 ```
 
-## Example Usage
+## Example Line Plot Usage
 ```python
 from wplotlib import lines
 	
@@ -16,5 +16,32 @@ y = np.sin(x)
 lp = lines()
 lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr)#, outpath)	#x can be set to None
 ```
+![Image](https://github.com/endsley/wPlotLib/blob/main/wplotlib/imgs/line_output.png?raw=true)
+
+## Example Heat Map Usage
+```python
+from wplotlib import heatMap
+
+X1 = np.random.randn(100,2)
+X2 = np.random.randn(100,2) + 5
+X = np.vstack((X1,X2))
+
+Y1 = np.ones(100)
+Y2 = np.zeros(100)
+Y = np.hstack((Y1,Y2))
+
+clf = SpectralClustering(n_clusters=2)
+allocation = clf.fit_predict(X)
+kernel = clf.affinity_matrix_
+axis_label = range(kernel.shape[0])
+hMap = heatMap()
+sorted_kernel = hMap.sort_kernel(kernel, allocation)
+
+hMap.draw_HeatMap(kernel, title='Drawing Unsorted Heat Map')
+hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map')
+```
+
 ## This code results in
-![Image](https://github.com/endsley/wPlotLib/blob/main/wplotlib/result.png?raw=true)
+![Image](https://github.com/endsley/wPlotLib/blob/main/wplotlib/imgs/Unsorted_HeatMap_output.png?raw=true)
+![Image](https://github.com/endsley/wPlotLib/blob/main/wplotlib/imgs/Sorted_HeatMap_output.png?raw=true)
+
