@@ -20,8 +20,11 @@ lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr)#, outpath)
 
 ## Example Heat Map Usage
 ```python
+import numpy as np
 from wplotlib import heatMap
 from sklearn.cluster import SpectralClustering
+from scipy.sparse import coo_matrix
+from sklearn.utils import shuffle
 
 X1 = np.random.randn(100,2)
 X2 = np.random.randn(100,2) + 5
@@ -30,6 +33,10 @@ X = np.vstack((X1,X2))
 Y1 = np.ones(100)
 Y2 = np.zeros(100)
 Y = np.hstack((Y1,Y2))
+
+X_sparse = coo_matrix(X)
+X, X_sparse, y = shuffle(X, X_sparse, Y, random_state=0) 
+
 
 clf = SpectralClustering(n_clusters=2)
 allocation = clf.fit_predict(X)
