@@ -21,6 +21,7 @@ lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr)#, outpath)
 ## Example Heat Map Usage
 ```python
 from wplotlib import heatMap
+from sklearn.cluster import SpectralClustering
 
 X1 = np.random.randn(100,2)
 X2 = np.random.randn(100,2) + 5

@@ -3,4 +3,5 @@ README
 setup.cfg
 setup.py
 wplotlib/__init__.py
+wplotlib/heatMap.py
 wplotlib/lines.py

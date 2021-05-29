@@ -30,3 +30,4 @@ Upload Real
 	twine upload dist/*
 
 
+pip install wplotlib -U
