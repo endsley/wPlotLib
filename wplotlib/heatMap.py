@@ -1,6 +1,8 @@
 #! /usr/bin/env python
 
-import numpy as np
+
+import numpy as np; np.random.seed(0)
+import seaborn as sns; sns.set_theme()
 from matplotlib import pyplot as plt
 import matplotlib
 from numpy import genfromtxt
@@ -53,24 +55,30 @@ class heatMap:
 
 		return H_sorted_kernel
 
-	def draw_HeatMap(self, kernel, xlabel=[], ylabel=[], title='', fsize=14):
-		ylabel = list(reversed(ylabel))
-		
-		kernel = np.flipud(kernel)
-		fig, ax = plt.subplots()
-		#fig.set_size_inches(13,13)
-		heatmap = plt.pcolor(kernel, cmap=matplotlib.cm.Blues, alpha=0.8)
-
-		if len(ylabel) > 0:
-			ax.set_yticks(np.arange(kernel.shape[0]) + 0.5, minor=False)
-			ax.set_yticklabels(ylabel, rotation='horizontal', minor=False)
-		
-		if len(xlabel) > 0:
-			ax.set_xticks(np.arange(kernel.shape[1]) + 0.5, minor=False)
-			ax.set_xticklabels(xlabel, rotation='vertical', minor=False)
-	 
-		plt.title(title, fontsize=fsize)
-		plt.show() 
+	def draw_HeatMap(self, kernel, xlabel=[], ylabel=[], title='', fsize=14, use_seaborn=False, vmin=0, vmax=1, center=None, linewidths=0, cmap=None):
+		if use_seaborn:
+			ax = sns.heatmap(kernel, vmin=vmin, vmax=vmax, center=center, linewidths=linewidths, cmap=cmap)
+			plt.title(title, fontsize=fsize)
+			plt.tight_layout()
+			plt.show() 
+		else:
+			ylabel = list(reversed(ylabel))
+			
+			kernel = np.flipud(kernel)
+			fig, ax = plt.subplots()
+			#fig.set_size_inches(13,13)
+			heatmap = plt.pcolor(kernel, cmap=matplotlib.cm.Blues, alpha=0.8)
+	
+			if len(ylabel) > 0:
+				ax.set_yticks(np.arange(kernel.shape[0]) + 0.5, minor=False)
+				ax.set_yticklabels(ylabel, rotation='horizontal', minor=False)
+			
+			if len(xlabel) > 0:
+				ax.set_xticks(np.arange(kernel.shape[1]) + 0.5, minor=False)
+				ax.set_xticklabels(xlabel, rotation='vertical', minor=False)
+		 
+			plt.title(title, fontsize=fsize)
+			plt.show() 
 
 		return plt
 
@@ -116,7 +124,8 @@ if __name__ == "__main__":
 	axis_label = range(kernel.shape[0])
 	hMap = heatMap()
 	sorted_kernel = hMap.sort_kernel(kernel, allocation)
-	#hMap.draw_HeatMap(sorted_kernel, xlabel=axis_label, ylabel=axis_label, title='')
-	hMap.draw_HeatMap(kernel, title='Drawing Unsorted Heat Map')
-	hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map')
 
+	#hMap.draw_HeatMap(kernel, title='Drawing Unsorted Heat Map')
+	#hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map')
+	hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map', use_seaborn=True, vmin=0, vmax=1, center=None, linewidths=0, cmap=None)
+	#cmap types: "Blues", "YlGnBu", "BuPu", "Greens", None
