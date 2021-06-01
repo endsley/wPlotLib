@@ -52,6 +52,9 @@ hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map', use_seaborn=Tr
 
 ## Example Clustering Plots
 ```python
+from wplotlib import cluster_plot
+import numpy as np
+
 n = 100
 x1 = np.random.randn(n,2) + np.array([4,4])
 x2 = np.random.randn(n,2) + np.array([-4,-4])
