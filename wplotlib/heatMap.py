@@ -55,7 +55,7 @@ class heatMap:
 
 		return H_sorted_kernel
 
-	def draw_HeatMap(self, kernel, xlabel=[], ylabel=[], title='', fsize=14, use_seaborn=False, vmin=0, vmax=1, center=None, linewidths=0, cmap=None):
+	def draw_HeatMap(self, kernel, xlabel=[], ylabel=[], title='', fsize=14, use_seaborn=False, vmin=0, vmax=1, center=None, linewidths=0, cmap=None, path=''):
 		if use_seaborn:
 			ax = sns.heatmap(kernel, vmin=vmin, vmax=vmax, center=center, linewidths=linewidths, cmap=cmap)
 			plt.title(title, fontsize=fsize)
@@ -71,18 +71,23 @@ class heatMap:
 	
 			if len(ylabel) > 0:
 				ax.set_yticks(np.arange(kernel.shape[0]) + 0.5, minor=False)
-				ax.set_yticklabels(ylabel, rotation='horizontal', minor=False)
+				ax.set_yticklabels(ylabel, rotation='horizontal', minor=False, size=fsize)
 			
 			if len(xlabel) > 0:
 				ax.set_xticks(np.arange(kernel.shape[1]) + 0.5, minor=False)
-				ax.set_xticklabels(xlabel, rotation='vertical', minor=False)
+				ax.set_xticklabels(xlabel, rotation='vertical', minor=False, size=fsize)
 		 
 			plt.title(title, fontsize=fsize)
-			plt.show() 
+
+			if path == '':
+				plt.show() 
+			else:
+				plt.draw()	
+				fig.savefig(path, dpi=500)
 
 		return plt
 
-	def save_HeatMap(self, path, kernel, xlabel=[], ylabel=[], title=''):
+	def save_HeatMap(self, path, kernel, xlabel=[], ylabel=[], title='',fsize=14):
 		#xlabel = list(reversed(xlabel))
 		ylabel = list(reversed(ylabel))
 	
@@ -93,13 +98,13 @@ class heatMap:
 
 		if len(ylabel) > 0:
 			ax.set_yticks(np.arange(kernel.shape[0]) + 0.5, minor=False)
-			ax.set_yticklabels(ylabel, rotation='horizontal', minor=False)
+			ax.set_yticklabels(ylabel, rotation='horizontal', minor=False, fsize=fsize)
 		
 		if len(xlabel) > 0:
 			ax.set_xticks(np.arange(kernel.shape[1]) + 0.5, minor=False)
-			ax.set_xticklabels(xlabel, rotation='vertical', minor=False)
+			ax.set_xticklabels(xlabel, rotation='vertical', minor=False, fsize=fsize)
 	 
-		plt.title(title)
+		plt.title(title,fsize=14)
 		plt.draw()	
 		fig.savefig(path, dpi=500)
 		return plt
@@ -125,7 +130,7 @@ if __name__ == "__main__":
 	hMap = heatMap()
 	sorted_kernel = hMap.sort_kernel(kernel, allocation)
 
-	hMap.draw_HeatMap(kernel, title='Drawing Unsorted Heat Map')
-	hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map')
-	hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map', use_seaborn=True, vmin=0, vmax=1, center=None, linewidths=0, cmap=None)
+	hMap.draw_HeatMap(kernel, title='Drawing Unsorted Heat Map', fsize=14)
+	hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map', fsize=14)
+	hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map', use_seaborn=True, vmin=0, vmax=1, center=None, linewidths=0, cmap=None, fsize=14)
 	#cmap types: "Blues", "YlGnBu", "BuPu", "Greens", None
