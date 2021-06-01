@@ -125,7 +125,7 @@ if __name__ == "__main__":
 	hMap = heatMap()
 	sorted_kernel = hMap.sort_kernel(kernel, allocation)
 
-	#hMap.draw_HeatMap(kernel, title='Drawing Unsorted Heat Map')
-	#hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map')
+	hMap.draw_HeatMap(kernel, title='Drawing Unsorted Heat Map')
+	hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map')
 	hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map', use_seaborn=True, vmin=0, vmax=1, center=None, linewidths=0, cmap=None)
 	#cmap types: "Blues", "YlGnBu", "BuPu", "Greens", None
