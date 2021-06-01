@@ -11,6 +11,9 @@ Go into Github, create a new tag
 
 	copy the new tag link into url inside setup.py
 
+Remove the dist folder
+
+	rm -r dist/
 
 Update the sdist folder
 

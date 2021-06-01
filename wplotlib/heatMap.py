@@ -55,29 +55,35 @@ class heatMap:
 
 		return H_sorted_kernel
 
-	def draw_HeatMap(self, kernel, xlabel=[], ylabel=[], title='', fsize=14, use_seaborn=False, vmin=0, vmax=1, center=None, linewidths=0, cmap=None, path=''):
+	def draw_HeatMap(self, kernel, xTicklabel=[], yTicklabel=[], title='', 
+						xlabel='Features', ylabel='Samples',
+						fsize=14, use_seaborn=False, vmin=0, vmax=1, 
+						center=None, linewidths=0, cmap=None, path=''):
+
 		if use_seaborn:
 			ax = sns.heatmap(kernel, vmin=vmin, vmax=vmax, center=center, linewidths=linewidths, cmap=cmap)
 			plt.title(title, fontsize=fsize)
 			plt.tight_layout()
 			plt.show() 
 		else:
-			ylabel = list(reversed(ylabel))
+			yTicklabel = list(reversed(yTicklabel))
 			
 			kernel = np.flipud(kernel)
 			fig, ax = plt.subplots()
 			#fig.set_size_inches(13,13)
 			heatmap = plt.pcolor(kernel, cmap=matplotlib.cm.Blues, alpha=0.8)
 	
-			if len(ylabel) > 0:
+			if len(yTicklabel) > 0:
 				ax.set_yticks(np.arange(kernel.shape[0]) + 0.5, minor=False)
-				ax.set_yticklabels(ylabel, rotation='horizontal', minor=False, size=fsize)
+				ax.set_yticklabels(yTicklabel, rotation='horizontal', minor=False, size=fsize)
 			
-			if len(xlabel) > 0:
+			if len(xTicklabel) > 0:
 				ax.set_xticks(np.arange(kernel.shape[1]) + 0.5, minor=False)
-				ax.set_xticklabels(xlabel, rotation='vertical', minor=False, size=fsize)
+				ax.set_xticklabels(xTicklabel, rotation='vertical', minor=False, size=fsize)
 		 
 			plt.title(title, fontsize=fsize)
+			if xlabel != '': plt.xlabel(xlabel, fontsize=fsize)
+			if ylabel != '': plt.ylabel(ylabel, fontsize=fsize)
 
 			if path == '':
 				plt.show() 
@@ -85,28 +91,6 @@ class heatMap:
 				plt.draw()	
 				fig.savefig(path, dpi=500)
 
-		return plt
-
-	def save_HeatMap(self, path, kernel, xlabel=[], ylabel=[], title='',fsize=14):
-		#xlabel = list(reversed(xlabel))
-		ylabel = list(reversed(ylabel))
-	
-		kernel = np.flipud(kernel)
-		fig, ax = plt.subplots()
-		#fig.set_size_inches(13,13)
-		heatmap = plt.pcolor(kernel, cmap=matplotlib.cm.Blues, alpha=0.8)
-
-		if len(ylabel) > 0:
-			ax.set_yticks(np.arange(kernel.shape[0]) + 0.5, minor=False)
-			ax.set_yticklabels(ylabel, rotation='horizontal', minor=False, fsize=fsize)
-		
-		if len(xlabel) > 0:
-			ax.set_xticks(np.arange(kernel.shape[1]) + 0.5, minor=False)
-			ax.set_xticklabels(xlabel, rotation='vertical', minor=False, fsize=fsize)
-	 
-		plt.title(title,fsize=14)
-		plt.draw()	
-		fig.savefig(path, dpi=500)
 		return plt
 
 
