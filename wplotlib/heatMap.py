@@ -84,7 +84,7 @@ class heatMap:
 			plt.title(title, fontsize=fsize)
 			if xlabel != '': plt.xlabel(xlabel, fontsize=fsize)
 			if ylabel != '': plt.ylabel(ylabel, fontsize=fsize)
-
+		
 			if path == '':
 				plt.show() 
 			else:
