@@ -8,8 +8,10 @@ Go into setup.py
 	update version to the next one
 
 Go into Github, create a new tag
-
-	copy the new tag link into url inside setup.py
+	Use the endsley account, find wPlotLib
+	Click on Tags above the code, and then release -> draft a new release
+	Once you have created a new tag, 
+		copy the new tag link into url inside setup.py under label "download_url"
 
 Remove the dist folder
 
