@@ -29,7 +29,7 @@ class lines:
 		self.already_called_plot_line = False
 		plt.figure(figsize=figsize)
 
-	def plot_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, subplot=None):
+	def plot_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, subplot=None, xlim=None, ylim=None):
 		"""create a default 2D line plot
 		
 		: X: (float) the values for x-axis
@@ -52,6 +52,8 @@ class lines:
 		self.set_ylabel(ylabel, fontsize=self.yfont)
 		self.add_text(X, Y, imgText)
 
+		if xlim is not None: plt.xlim(xlim)
+		if ylim is not None: plt.ylim(ylim)
 		
 		if subplot is None:
 			if outpath is None: plt.show()
@@ -89,10 +91,9 @@ class lines:
 
 		plt.plot(X,Y, color=color)
 
-	def show(self):
-		#plt.axis('tight')
-		plt.show()
-		#self.already_called_plot_line = False
+	def show(self, save_path=None):
+		if save_path is None: plt.show()
+		else: plt.savefig(save_path)
 
 
 	def plot_line_with_error_area(x, y, error, show=False):

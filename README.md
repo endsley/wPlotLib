@@ -37,7 +37,9 @@ y2 = np.log(x)
 lp = lines(figsize=(10,5))
 lp.plot_line(x, y, 'First Plot', 'X axis', 'Y axis', imgText=textstr, subplot=121)
 lp.plot_line(x, y2, '2nd Plot', 'X axis', 'Y axis', imgText=textstr, subplot=122)
-lp.show()		# when making subplots, you have to call show explicitly after all the plots
+lp.show(save_path='twoSubplots.png') 
+# when making subplots, you have to call show explicitly after all the plots, if you include path, then it will save instead of show
+
 ```
 ![Image](https://github.com/endsley/wPlotLib/blob/main/wplotlib/imgs/subplot_lines.png?raw=true)
 
