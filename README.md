@@ -19,6 +19,29 @@ lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr)#, outpath)
 ```
 ![Image](https://github.com/endsley/wPlotLib/blob/main/wplotlib/imgs/line_output.png?raw=true)
 
+
+## Example Multiple Line subPlot Usage
+```python
+import numpy as np
+from sklearn.cluster import SpectralClustering
+
+from wplotlib import lines
+from wplotlib import heatMap
+from wplotlib import cluster_plot
+
+textstr = '\n'.join(( r'$\mu=%.2f$' % (0.1, ), r'$\mathrm{median}=%.2f$' % (0, ), r'$\sigma=%.2f$' % (33, )))
+x = np.linspace(0, 10, 1000)
+y = np.sin(x)
+y2 = np.log(x)
+
+lp = lines(figsize=(10,5))
+lp.plot_line(x, y, 'First Plot', 'X axis', 'Y axis', imgText=textstr, subplot=121)
+lp.plot_line(x, y2, '2nd Plot', 'X axis', 'Y axis', imgText=textstr, subplot=122)
+lp.show()		# when making subplots, you have to call show explicitly after all the plots
+```
+![Image](https://github.com/endsley/wPlotLib/blob/main/wplotlib/imgs/subplot_lines.png?raw=true)
+
+
 ## Example Heat Map Usage
 ```python
 from wplotlib import heatMap
