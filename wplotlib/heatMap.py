@@ -18,6 +18,7 @@ class heatMap:
 		matplotlib.rc('font', **font)
 		self.cluster_by_id = {}
 		self.cluster_by_name = {}
+		#plt.figure(figsize=figsize)
 
 	def sort_kernel(self, kernel, allocation, item_labels=[] ):
 		alloc_list = np.unique(allocation) 
@@ -58,7 +59,7 @@ class heatMap:
 	def draw_HeatMap(self, kernel, xTicklabel=[], yTicklabel=[], title='', 
 						xlabel='Features', ylabel='Samples',
 						fsize=14, use_seaborn=False, vmin=0, vmax=1, 
-						center=None, linewidths=0, cmap=None, path=''):
+						center=None, linewidths=0, cmap=None, path='', subplot=None):
 
 		if use_seaborn:
 			ax = sns.heatmap(kernel, vmin=vmin, vmax=vmax, center=center, linewidths=linewidths, cmap=cmap)
@@ -70,9 +71,13 @@ class heatMap:
 			
 			kernel = np.flipud(kernel)
 			fig, ax = plt.subplots()
+			#plt.subplots(2,1)
+			#if subplot is None: fig, ax = plt.subplots()
+			#else: fig, ax = plt.subplots(subplot)
 			#fig.set_size_inches(13,13)
+
 			heatmap = plt.pcolor(kernel, cmap=matplotlib.cm.Blues, alpha=0.8)
-	
+
 			if len(yTicklabel) > 0:
 				ax.set_yticks(np.arange(kernel.shape[0]) + 0.5, minor=False)
 				ax.set_yticklabels(yTicklabel, rotation='horizontal', minor=False, size=fsize)
