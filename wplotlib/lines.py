@@ -17,7 +17,7 @@ import numpy as np
 
 class lines:
 	"""A class that generates basic line plots"""
-	def __init__(self, title_font=16, xfont=16, yfont=16):
+	def __init__(self, title_font=16, xfont=16, yfont=16, figsize=(6, 6)):
 		"""calculates the probability that "token" is found in spam emails
 		
 		:param token: (str)
@@ -26,14 +26,25 @@ class lines:
 		self.title_font = title_font
 		self.xfont = xfont
 		self.yfont = yfont
+		self.already_called_plot_line = False
+		plt.figure(figsize=figsize)
 
-	def plot_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None):
-		"""calculates the probability that "token" is found in spam emails
+	def plot_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, subplot=None):
+		"""create a default 2D line plot
 		
-		:param token: (str)
-		:return: (float) probability "token" is spam based on training emails
+		: X: (float) the values for x-axis
+		: Y: (float) the values for y-axis
+		:return: None
 		"""
+
 		if X is None: X = np.arange(1, len(Y)+1)
+		if subplot is not None: 
+			#if not self.already_called_plot_line: plt.figure(figsize=figsize)
+
+			plt.subplot(subplot)
+			#self.already_called_plot_line = True
+		#else:
+			#plt.figure(figsize=figsize)
 
 		self.add_plot(X,Y)
 		self.set_title(title, fontsize=self.title_font)
@@ -41,8 +52,10 @@ class lines:
 		self.set_ylabel(ylabel, fontsize=self.yfont)
 		self.add_text(X, Y, imgText)
 
-		if outpath is None: plt.show()
-		else: plt.savefig(outpath)
+		
+		if subplot is None:
+			if outpath is None: plt.show()
+			else: plt.savefig(outpath)
 
 	def add_text(self, X, Y, textstr, α=0.05, β=0.95):
 		if textstr is None: return
@@ -57,7 +70,6 @@ class lines:
 
 
 
-	#plt.axis('tight');
 	def set_title(self, title, fontsize=16):
 		plt.title(title, fontsize=fontsize)
 
@@ -78,8 +90,9 @@ class lines:
 		plt.plot(X,Y, color=color)
 
 	def show(self):
-
+		#plt.axis('tight')
 		plt.show()
+		#self.already_called_plot_line = False
 
 
 	def plot_line_with_error_area(x, y, error, show=False):
