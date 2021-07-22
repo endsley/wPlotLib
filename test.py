@@ -6,6 +6,7 @@ from sklearn.cluster import SpectralClustering
 from wplotlib import lines
 from wplotlib import heatMap
 from wplotlib import cluster_plot
+from wplotlib import histograms
 
 
 ##	Line Plot Example
@@ -17,17 +18,30 @@ from wplotlib import cluster_plot
 #lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr)#, outpath)
 
 
-##	Multiple Line subPlot Example
-textstr = '\n'.join(( r'$\mu=%.2f$' % (0.1, ), r'$\mathrm{median}=%.2f$' % (0, ), r'$\sigma=%.2f$' % (33, )))
-x = np.linspace(0.1, 10, 1000)
-y = np.sin(x)
-y2 = np.log(x)
+###	Multiple Line subPlot Example
+#textstr = '\n'.join(( r'$\mu=%.2f$' % (0.1, ), r'$\mathrm{median}=%.2f$' % (0, ), r'$\sigma=%.2f$' % (33, )))
+#x = np.linspace(0.1, 10, 1000)
+#y = np.sin(x)
+#y2 = np.log(x)
+#
+#lp = lines(figsize=(10,5))
+#lp.plot_line(x, y, 'First Plot', 'X axis', 'Y axis', imgText=textstr, subplot=121, xlim=[0,3])
+#lp.plot_line(x, y2, '2nd Plot', 'X axis', 'Y axis', imgText=textstr, subplot=122)
+#lp.show(save_path='twoSubplots.png') # when making subplots, you have to call show explicitly after all the plots, if you include path, then it will save instead of show
 
-lp = lines(figsize=(10,5))
-lp.plot_line(x, y, 'First Plot', 'X axis', 'Y axis', imgText=textstr, subplot=121, xlim=[0,3])
-lp.plot_line(x, y2, '2nd Plot', 'X axis', 'Y axis', imgText=textstr, subplot=122)
-lp.show(save_path='twoSubplots.png') # when making subplots, you have to call show explicitly after all the plots, if you include path, then it will save instead of show
+##	Draw a histogram
+x = [21,22,23,4,5,6,77,8,9,10,31,32,33,34,35,36,37,18,49,50,100]
+H = histograms()
+H.histogram(x, num_bins=10, title='Basic Histogram', facecolor='blue', α=0.5, path=None)
+H.show()
 
+
+###	Draw two histograms
+#x = [21,22,23,4,5,6,77,8,9,10,31,32,33,34,35,36,37,18,49,50,100]
+#H = histograms(figsize=(10,5))
+#H.histogram(x, num_bins=10, title='Basic Histogram', facecolor='blue', α=0.5, path=None, subplot=121)
+#H.histogram(x, num_bins=10, title='Basic Histogram', facecolor='blue', α=0.5, path=None, subplot=122)
+#H.show()
 
 
 ##	Heat Map Example

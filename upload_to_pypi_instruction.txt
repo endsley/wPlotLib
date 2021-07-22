@@ -13,26 +13,30 @@ Go into Github, create a new tag
 	Once you have created a new tag, 
 		copy the new tag link into url inside setup.py under label "download_url"
 
-Remove the dist folder
-
-	rm -r dist/
-
-Update the sdist folder
-
-	python setup.py sdist
-
-Make sure twin is installed
-
-	pip install twine
-
-Upload Test 
-
-	twine upload --repository testpypi dist/*
-	twine check dist/*
-
-Upload Real
-
-	twine upload dist/*
+Run this command 
+	First get the password from chrome on pypi
+	syncPypi.py
+Or 
+	Remove the dist folder
+	
+		rm -r dist/
+	
+	Update the sdist folder
+	
+		python setup.py sdist
+	
+	Make sure twin is installed
+	
+		pip install twine
+	
+	Upload Test 
+	
+		twine upload --repository testpypi dist/*
+		twine check dist/*
+	
+	Upload Real
+	
+		twine upload dist/*
 
 
 pip install wplotlib -U

@@ -38,13 +38,7 @@ class lines:
 		"""
 
 		if X is None: X = np.arange(1, len(Y)+1)
-		if subplot is not None: 
-			#if not self.already_called_plot_line: plt.figure(figsize=figsize)
-
-			plt.subplot(subplot)
-			#self.already_called_plot_line = True
-		#else:
-			#plt.figure(figsize=figsize)
+		if subplot is not None: plt.subplot(subplot)
 
 		self.add_plot(X,Y)
 		self.set_title(title, fontsize=self.title_font)
