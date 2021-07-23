@@ -29,11 +29,17 @@ class lines:
 		self.already_called_plot_line = False
 		plt.figure(figsize=figsize)
 
-	def plot_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, subplot=None, xlim=None, ylim=None):
+	def plot_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
+					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
+					xTextLoc=None, yTextLoc=None):
 		"""create a default 2D line plot
 		
 		: X: (float) the values for x-axis
 		: Y: (float) the values for y-axis
+		: xTextShift: (float) Uses the range of x values as total, sets a percentage of place the text
+		: yTextShift: (float) Uses the range of y values as total, sets a percentage of place the text
+		: xTextLoc: (float) Uses absolute value and overrides xTextShift
+		: yTextLoc: (float) Uses absolute value and overrides yTextShift
 		:return: None
 		"""
 
@@ -44,7 +50,7 @@ class lines:
 		self.set_title(title, fontsize=self.title_font)
 		self.set_xlabel(xlabel, fontsize=self.xfont)
 		self.set_ylabel(ylabel, fontsize=self.yfont)
-		self.add_text(X, Y, imgText)
+		self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift)
 
 		if xlim is not None: plt.xlim(xlim)
 		if ylim is not None: plt.ylim(ylim)
@@ -53,13 +59,16 @@ class lines:
 			if outpath is None: plt.show()
 			else: plt.savefig(outpath)
 
-	def add_text(self, X, Y, textstr, α=0.05, β=0.95):
+	def add_text(self, X, Y, textstr, α=0.05, β=0.95, xTextLoc=None, yTextLoc=None):
 		if textstr is None: return
 		mX = np.min(X)
 		mY = np.min(Y)
 
-		xLoc = α*(np.max(X) - mX) + mX
-		yLoc = β*(np.max(Y) - mY) + mY
+		if xTextLoc is None: xLoc = α*(np.max(X) - mX) + mX
+		else: xLoc = xTextLoc
+
+		if yTextLoc is None: yLoc = β*(np.max(Y) - mY) + mY
+		else: yLoc = yTextLoc
 
 		props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
 		plt.text(xLoc, yLoc, textstr, fontsize=14, verticalalignment='top', bbox=props)
