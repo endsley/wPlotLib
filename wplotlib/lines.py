@@ -50,7 +50,7 @@ class lines:
 		self.set_title(title, fontsize=self.title_font)
 		self.set_xlabel(xlabel, fontsize=self.xfont)
 		self.set_ylabel(ylabel, fontsize=self.yfont)
-		self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift)
+		self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
 
 		if xlim is not None: plt.xlim(xlim)
 		if ylim is not None: plt.ylim(ylim)
