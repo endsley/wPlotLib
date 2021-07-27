@@ -1,22 +1,11 @@
 #!/usr/bin/env python
-"""
-.. code-block:: python
-  :linenos:
-
-  textstr = "\\n".join(( r"$\mu=%.2f$" % (0.1, ), r"$\mathrm{median}=%.2f$" % (0, ), r"$\sigma=%.2f$" % (33, )))
-  x = np.linspace(0, 10, 1000)
-  y = np.sin(x)
-  
-  lp = line_plot()
-  lp.plot_line(x, y, "Title Here", "X axis", "Y axis", imgText=textstr)#, outpath)
-"""
 
 from matplotlib import pyplot as plt
 import numpy as np
 
 
-class lines:
-	"""A class that generates basic line plots"""
+class scatter:
+	"""A class that generates basic scatter plots"""
 	def __init__(self, title_font=16, xfont=16, yfont=16, figsize=(6, 6)):
 		"""calculates the probability that "token" is found in spam emails
 		
@@ -29,7 +18,7 @@ class lines:
 		self.already_called_plot_line = False
 		plt.figure(figsize=figsize)
 
-	def plot_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
+	def plot_scatter(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
 					xTextLoc=None, yTextLoc=None, color='blue'):
 		"""create a default 2D line plot
@@ -92,7 +81,7 @@ class lines:
 		#color=(1.0,0.2,0.3) # RGB tuple, values 0 to 1
 		#color='chartreuse'; # all HTML color names supported
 
-		plt.plot(X,Y, color=color)
+		plt.scatter(X, Y, color=color)
 
 	def show(self, save_path=None):
 		if save_path is None: plt.show()

@@ -3,19 +3,25 @@
 import numpy as np
 from sklearn.cluster import SpectralClustering
 
-from wplotlib import lines
-from wplotlib import heatMap
-from wplotlib import cluster_plot
-from wplotlib import histograms
+import wplotlib
+
+#from wplotlib import scatter
+#from wplotlib import lines
+#from wplotlib import heatMap
+#from wplotlib import cluster_plot
+#from wplotlib import histograms
 
 
-##	Line Plot Example
-#textstr = '\n'.join(( r'$\mu=%.2f$' % (0.1, ), r'$\mathrm{median}=%.2f$' % (0, ), r'$\sigma=%.2f$' % (33, )))
-#x = np.linspace(0, 10, 1000)
-#y = np.sin(x)
-#
-#lp = lines(figsize=(10,5))		# (width, height)
-#lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr)#, outpath)
+#	Line and Scatter Plot Example
+textstr = '\n'.join(( r'$\mu=%.2f$' % (0.1, ), r'$\mathrm{median}=%.2f$' % (0, ), r'$\sigma=%.2f$' % (33, )))
+x = np.linspace(0, 10, 40)
+y = np.sin(x)
+
+lp = wplotlib.lines(figsize=(10,5))		# (width, height)
+lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr)#, outpath)
+
+lp = wplotlib.scatter(figsize=(10,5))		# (width, height)
+lp.plot_scatter(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr)#, outpath)
 
 
 ###	Multiple Line subPlot Example
@@ -35,12 +41,12 @@ from wplotlib import histograms
 #H.histogram(x, num_bins=10, title='Basic Histogram', facecolor='blue', α=0.5, path=None)
 
 
-##	Draw two histograms, on of which is log scaled
-x = [21,22,23,4,5,6,77,8,9,10,31,32,33,34,35,36,37,18,49,50,100]
-H = histograms(figsize=(10,5))
-H.histogram(x, num_bins=10, title='Basic Histogram', facecolor='blue', α=0.5, path=None, subplot=121)
-H.histogram(x, num_bins=10, title='Y Log Scaled Histogram', facecolor='blue', α=0.5, path=None, subplot=122, ylogScale=True)
-H.show()
+###	Draw two histograms, on of which is log scaled
+#x = [21,22,23,4,5,6,77,8,9,10,31,32,33,34,35,36,37,18,49,50,100]
+#H = histograms(figsize=(10,5))
+#H.histogram(x, num_bins=10, title='Basic Histogram', facecolor='blue', α=0.5, path=None, subplot=121)
+#H.histogram(x, num_bins=10, title='Y Log Scaled Histogram', facecolor='blue', α=0.5, path=None, subplot=122, ylogScale=True)
+#H.show()
 
 
 ##	Heat Map Example
