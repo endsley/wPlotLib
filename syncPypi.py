@@ -6,6 +6,6 @@ import time
 os.system('rm -r dist/')
 os.system('python setup.py sdist')
 os.system('twine upload dist/*')
-time.sleep(3)
+time.sleep(6)
 os.system('pip install wplotlib -U')
 

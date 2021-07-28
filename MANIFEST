@@ -7,3 +7,4 @@ wplotlib/clusters.py
 wplotlib/heatMap.py
 wplotlib/histograms.py
 wplotlib/lines.py
+wplotlib/scatter.py
