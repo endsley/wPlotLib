@@ -88,14 +88,14 @@ class scatter:
 					xTextLoc=None, yTextLoc=None):
 
 
-		if save_path is None: plt.show()
-		else: plt.savefig(save_path)
-
 		self.set_title(title, fontsize=self.title_font)
 		self.set_xlabel(xlabel, fontsize=self.xfont)
 		self.set_ylabel(ylabel, fontsize=self.yfont)
 		if imgText is not None:
 			self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
+
+		if save_path is None: plt.show()
+		else: plt.savefig(save_path)
 
 
 	def plot_line_with_error_area(x, y, error, show=False):
