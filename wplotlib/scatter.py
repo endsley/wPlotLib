@@ -83,9 +83,19 @@ class scatter:
 
 		plt.scatter(X, Y, color=color)
 
-	def show(self, save_path=None):
+	def show(self, save_path=None, title='', xlabel='', ylabel='', imgText=None, 
+					xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
+					xTextLoc=None, yTextLoc=None):
+
+
 		if save_path is None: plt.show()
 		else: plt.savefig(save_path)
+
+		self.set_title(title, fontsize=self.title_font)
+		self.set_xlabel(xlabel, fontsize=self.xfont)
+		self.set_ylabel(ylabel, fontsize=self.yfont)
+		if imgText is not None:
+			self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
 
 
 	def plot_line_with_error_area(x, y, error, show=False):
