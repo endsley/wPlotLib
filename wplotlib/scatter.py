@@ -20,7 +20,7 @@ class scatter:
 
 	def plot_scatter(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
-					xTextLoc=None, yTextLoc=None, color='blue'):
+					xTextLoc=None, yTextLoc=None, color='blue', marker'x'):
 		"""create a default 2D line plot
 		
 		: X: (float) the values for x-axis
@@ -29,6 +29,16 @@ class scatter:
 		: yTextShift: (float) Uses the range of y values as total, sets a percentage of place the text
 		: xTextLoc: (float) Uses absolute value and overrides xTextShift
 		: yTextLoc: (float) Uses absolute value and overrides yTextShift
+
+		#color='blue'        # specify color by name
+		#color='g'           # short color code (rgbcmyk)
+		#color='0.75'        # Grayscale between 0 and 1
+		#color='#FFDD44'     # Hex code (RRGGBB from 00 to FF)
+		#color=(1.0,0.2,0.3) # RGB tuple, values 0 to 1
+		#color='chartreuse'; # all HTML color names supported
+
+		#Possible markers: https://matplotlib.org/stable/api/markers_api.html
+
 		:return: None
 		"""
 
@@ -73,7 +83,7 @@ class scatter:
 	def set_ylabel(self, ylabel, fontsize=16):
 		plt.ylabel(ylabel, fontsize=fontsize)
 
-	def add_plot(self, X,Y, color='blue'):
+	def add_plot(self, X,Y, color='blue', marker='x'):
 		#color='blue'        # specify color by name
 		#color='g'           # short color code (rgbcmyk)
 		#color='0.75'        # Grayscale between 0 and 1
@@ -81,7 +91,9 @@ class scatter:
 		#color=(1.0,0.2,0.3) # RGB tuple, values 0 to 1
 		#color='chartreuse'; # all HTML color names supported
 
-		plt.scatter(X, Y, color=color)
+		#Possible markers: https://matplotlib.org/stable/api/markers_api.html
+
+		plt.scatter(X, Y, color=color, marker=marker)
 
 	def show(self, save_path=None, title='', xlabel='', ylabel='', imgText=None, 
 					xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
