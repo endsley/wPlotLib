@@ -6,7 +6,7 @@ import numpy as np
 
 class scatter:
 	"""A class that generates basic scatter plots"""
-	def __init__(self, title_font=16, xfont=16, yfont=16, figsize=(6, 6)):
+	def __init__(self, title_font=16, xfont=16, yfont=16, figsize=None):
 		"""calculates the probability that "token" is found in spam emails
 		
 		:param token: (str)
@@ -16,7 +16,7 @@ class scatter:
 		self.xfont = xfont
 		self.yfont = yfont
 		self.already_called_plot_line = False
-		plt.figure(figsize=figsize)
+		if figsize is not None: plt.figure(figsize=figsize)
 
 	def plot_scatter(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
