@@ -20,7 +20,7 @@ class scatter:
 
 	def plot_scatter(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
-					xTextLoc=None, yTextLoc=None, color='blue', marker'x'):
+					xTextLoc=None, yTextLoc=None, color='blue', marker='x'):
 		"""create a default 2D line plot
 		
 		: X: (float) the values for x-axis
@@ -45,7 +45,7 @@ class scatter:
 		if X is None: X = np.arange(1, len(Y)+1)
 		if subplot is not None: plt.subplot(subplot)
 
-		self.add_plot(X,Y, color)
+		self.add_plot(X,Y, color, marker)
 		self.set_title(title, fontsize=self.title_font)
 		self.set_xlabel(xlabel, fontsize=self.xfont)
 		self.set_ylabel(ylabel, fontsize=self.yfont)

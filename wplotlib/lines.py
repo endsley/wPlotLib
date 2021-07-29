@@ -31,7 +31,7 @@ class lines:
 
 	def plot_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
-					xTextLoc=None, yTextLoc=None, color='blue'):
+					xTextLoc=None, yTextLoc=None, color='blue', marker='x'):
 		"""create a default 2D line plot
 		
 		: X: (float) the values for x-axis
@@ -46,7 +46,7 @@ class lines:
 		if X is None: X = np.arange(1, len(Y)+1)
 		if subplot is not None: plt.subplot(subplot)
 
-		self.add_plot(X,Y, color)
+		self.add_plot(X,Y, color, marker)
 		self.set_title(title, fontsize=self.title_font)
 		self.set_xlabel(xlabel, fontsize=self.xfont)
 		self.set_ylabel(ylabel, fontsize=self.yfont)
@@ -84,7 +84,7 @@ class lines:
 	def set_ylabel(self, ylabel, fontsize=16):
 		plt.ylabel(ylabel, fontsize=fontsize)
 
-	def add_plot(self, X,Y, color='blue'):
+	def add_plot(self, X,Y, color='blue', marker='x'):
 		#color='blue'        # specify color by name
 		#color='g'           # short color code (rgbcmyk)
 		#color='0.75'        # Grayscale between 0 and 1
@@ -92,7 +92,7 @@ class lines:
 		#color=(1.0,0.2,0.3) # RGB tuple, values 0 to 1
 		#color='chartreuse'; # all HTML color names supported
 
-		plt.plot(X,Y, color=color)
+		plt.plot(X,Y, color=color, marker=marker)
 
 	def show(self, save_path=None, title='', xlabel='', ylabel='', imgText=None, 
 					xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
