@@ -31,7 +31,7 @@ class lines:
 
 	def plot_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
-					xTextLoc=None, yTextLoc=None, color='blue', marker='x'):
+					xTextLoc=None, yTextLoc=None, color='blue', marker='.'):
 		"""create a default 2D line plot
 		
 		: X: (float) the values for x-axis
@@ -84,7 +84,7 @@ class lines:
 	def set_ylabel(self, ylabel, fontsize=16):
 		plt.ylabel(ylabel, fontsize=fontsize)
 
-	def add_plot(self, X,Y, color='blue', marker='x'):
+	def add_plot(self, X,Y, color='blue', marker='.'):
 		#color='blue'        # specify color by name
 		#color='g'           # short color code (rgbcmyk)
 		#color='0.75'        # Grayscale between 0 and 1
