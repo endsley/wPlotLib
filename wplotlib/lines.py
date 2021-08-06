@@ -65,8 +65,9 @@ class lines:
 		if ylim is not None: plt.ylim(ylim)
 		
 		if subplot is None:
-			if path is None and showImg: plt.show()
-			else: plt.savefig(outpath)
+			if outpath is not None: plt.savefig(outpath)
+			if showImg: plt.show()
+
 
 	def add_text(self, X, Y, textstr, α=0.05, β=0.95, xTextLoc=None, yTextLoc=None):
 		if textstr is None: return
