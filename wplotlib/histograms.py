@@ -11,7 +11,8 @@ class histograms:
 		self.already_called_plot_line = False
 		plt.figure(figsize=figsize)
 
-	def histogram(self, x, num_bins=10, title='', fontsize=12, facecolor='blue', α=0.5, path=None, subplot=None, ylogScale=False):
+	def histogram(self, x, num_bins=10, title='', fontsize=12, facecolor='blue', α=0.5, 
+			path=None, subplot=None, ylogScale=False, showImg=True):
 		if subplot is not None: plt.subplot(subplot)
 	
 		plt.title(title, fontsize=fontsize)
@@ -28,7 +29,7 @@ class histograms:
 		#plt.xscale('log')
 	
 		if subplot is None:
-			if path is None: plt.show()
+			if path is None and showImg: plt.show()
 			else: plt.savefig(outpath)
 
 	def show(self, save_path=None):
