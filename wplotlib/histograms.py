@@ -30,7 +30,7 @@ class histograms:
 	
 		if subplot is None:
 			if path is None and showImg: plt.show()
-			else: plt.savefig(outpath)
+			else: plt.savefig(path)
 
 	def show(self, save_path=None):
 		if save_path is None: plt.show()
