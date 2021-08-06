@@ -4,20 +4,28 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class histograms:
-	def __init__(self, title_font=12, xfont=12, yfont=12, figsize=(6, 6)):
+	def __init__(self, title_font=12, xfont=12, yfont=12, figsize=None):
 		self.title_font = title_font
 		self.xfont = xfont
 		self.yfont = yfont
 		self.already_called_plot_line = False
-		plt.figure(figsize=figsize)
+		if figsize is not None: plt.figure(figsize=figsize)
 
 	def histogram(self, x, num_bins=10, title='', fontsize=12, facecolor='blue', α=0.5, 
-			path=None, subplot=None, ylogScale=False, showImg=True):
+			path=None, subplot=None, ylogScale=False, showImg=True, normalize=False):
+		'''
+			normalize 	: Show the probability instead of count
+			showImg		: Calls the show function at the end
+		'''
+
+
+
+
 
 		if subplot is not None: plt.subplot(subplot)
 	
 		plt.title(title, fontsize=fontsize)
-		n, bins, patches = plt.hist(x, num_bins, facecolor=facecolor, alpha=α)
+		n, bins, patches = plt.hist(x, num_bins, facecolor=facecolor, alpha=α, density=normalize)
 		if ylogScale: plt.yscale('log', nonposy='clip')
 
 		#hist, bins = np.histogram(x, bins=num_bins)
