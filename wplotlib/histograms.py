@@ -12,18 +12,17 @@ class histograms:
 		if figsize is not None: plt.figure(figsize=figsize)
 
 	def histogram(self, x, num_bins=10, title='', fontsize=12, facecolor='blue', α=0.5, 
+			xlabel='', ylabel='', 
 			path=None, subplot=None, ylogScale=False, showImg=True, normalize=False):
 		'''
 			normalize 	: Show the probability instead of count
 			showImg		: Calls the show function at the end
 		'''
 
-
-
-
-
 		if subplot is not None: plt.subplot(subplot)
 	
+		plt.xlabel(xlabel, fontsize=fontsize)
+		plt.ylabel(ylabel, fontsize=fontsize)
 		plt.title(title, fontsize=fontsize)
 		n, bins, patches = plt.hist(x, num_bins, facecolor=facecolor, alpha=α, density=normalize)
 		if ylogScale: plt.yscale('log', nonposy='clip')
