@@ -96,6 +96,9 @@ class scatter:
 
 		#Possible markers: https://matplotlib.org/stable/api/markers_api.html
 
+		self.X = X
+		self.Y = Y
+
 		plt.scatter(X, Y, color=color, marker=marker)
 
 	def show(self, save_path=None, title='', xlabel='', ylabel='', imgText=None, 
