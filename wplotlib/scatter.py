@@ -42,6 +42,9 @@ class scatter:
 		:return: None
 		"""
 
+		self.X = X
+		self.Y = Y
+
 		if X is None: X = np.arange(1, len(Y)+1)
 		if subplot is not None: plt.subplot(subplot)
 
@@ -104,7 +107,7 @@ class scatter:
 		self.set_xlabel(xlabel, fontsize=self.xfont)
 		self.set_ylabel(ylabel, fontsize=self.yfont)
 		if imgText is not None:
-			self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
+			self.add_text(self.X, self.Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
 
 		if save_path is None: plt.show()
 		else: plt.savefig(save_path)
