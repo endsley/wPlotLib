@@ -25,7 +25,8 @@ class histograms:
 		plt.ylabel(ylabel, fontsize=fontsize)
 		plt.title(title, fontsize=fontsize)
 		n, bins, patches = plt.hist(x, num_bins, facecolor=facecolor, alpha=α, density=normalize)
-		if ylogScale: plt.yscale('log', nonposy='clip')
+		if ylogScale: plt.yscale('log', nonpositive='clip')
+		plt.tight_layout()
 
 		#hist, bins = np.histogram(x, bins=num_bins)
 		#logbins = np.logspace(np.log10(bins[0]),np.log10(bins[-1]),len(bins))
