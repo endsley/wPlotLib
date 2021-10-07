@@ -57,13 +57,16 @@ class heatMap:
 		return H_sorted_kernel
 
 	def draw_HeatMap(self, kernel, xTicklabel=[], yTicklabel=[], title='', 
-						xlabel='Features', ylabel='Samples',
+						xlabel='Features', ylabel='Samples', ticker_rotate=90, ticker_fontsize=9,
 						fsize=14, use_seaborn=False, vmin=0, vmax=1, 
 						center=None, linewidths=0, cmap=None, path='', subplot=None):
 
 		if use_seaborn:
 			ax = sns.heatmap(kernel, vmin=vmin, vmax=vmax, center=center, linewidths=linewidths, cmap=cmap)
 			plt.title(title, fontsize=fsize)
+			plt.xticks(fontsize=ticker_fontsize, rotation=ticker_rotate)
+			plt.yticks(fontsize=ticker_fontsize, rotation=ticker_rotate)
+		
 			plt.tight_layout()
 			plt.show() 
 		else:
@@ -87,10 +90,16 @@ class heatMap:
 				ax.set_xticklabels(xTicklabel, rotation='vertical', minor=False, size=fsize)
 		 
 			plt.title(title, fontsize=fsize)
+			ax.tick_params(axis='both', which='major', labelsize=ticker_fontsize)
+			ax.tick_params(axis='both', which='minor', labelsize=ticker_fontsize)
+			plt.xticks(fontsize=ticker_fontsize, rotation=ticker_rotate)
+			#plt.yticks(fontsize=ticker_fontsize, rotation=ticker_rotate)
+
 			if xlabel != '': plt.xlabel(xlabel, fontsize=fsize)
 			if ylabel != '': plt.ylabel(ylabel, fontsize=fsize)
 		
 			if path == '':
+				plt.tight_layout()
 				plt.show() 
 			else:
 				plt.draw()	

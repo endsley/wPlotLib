@@ -20,6 +20,7 @@ class scatter:
 
 	def plot_scatter(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
+					ticker_fontsize=9, ticker_rotate=0,
 					xTextLoc=None, yTextLoc=None, color='blue', marker='x'):
 		"""create a default 2D line plot
 		
@@ -53,6 +54,10 @@ class scatter:
 		self.set_xlabel(xlabel, fontsize=self.xfont)
 		self.set_ylabel(ylabel, fontsize=self.yfont)
 		self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
+
+		plt.tick_params(axis='both', which='both', labelsize=ticker_fontsize)
+		plt.xticks(fontsize=ticker_fontsize, rotation=ticker_rotate)
+
 
 		if xlim is not None: plt.xlim(xlim)
 		if ylim is not None: plt.ylim(ylim)

@@ -31,6 +31,7 @@ class lines:
 
 	def plot_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
+					ticker_fontsize=9, ticker_rotate=0,
 					xTextLoc=None, yTextLoc=None, color='blue', marker=',', showImg=True):
 		"""create a default 2D line plot
 		
@@ -56,6 +57,10 @@ class lines:
 		if subplot is not None: plt.subplot(subplot)
 
 		self.add_plot(X,Y, color, marker)
+
+		plt.tick_params(axis='both', which='both', labelsize=ticker_fontsize)
+		plt.xticks(fontsize=ticker_fontsize, rotation=ticker_rotate)
+
 		self.set_title(title, fontsize=self.title_font)
 		self.set_xlabel(xlabel, fontsize=self.xfont)
 		self.set_ylabel(ylabel, fontsize=self.yfont)
@@ -64,6 +69,7 @@ class lines:
 		if xlim is not None: plt.xlim(xlim)
 		if ylim is not None: plt.ylim(ylim)
 		
+		plt.tight_layout()
 		if subplot is None:
 			if outpath is not None: plt.savefig(outpath)
 			if showImg: plt.show()
