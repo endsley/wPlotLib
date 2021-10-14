@@ -57,7 +57,7 @@ class heatMap:
 		return H_sorted_kernel
 
 	def draw_HeatMap(self, kernel, xTicklabel=[], yTicklabel=[], title='', 
-						xlabel='Features', ylabel='Samples', ticker_rotate=90, ticker_fontsize=9,
+						xlabel='Features', ylabel='Samples', ticker_rotate=0, ticker_fontsize=9,
 						fsize=14, use_seaborn=False, vmin=0, vmax=1, 
 						center=None, linewidths=0, cmap=None, path='', subplot=None):
 
