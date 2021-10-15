@@ -5,7 +5,9 @@
 pip install wplotlib
 ```
 
-## Example Line Plot Usage
+## Examples Usages
+[Line and Scatter Plot](https://github.com/endsley/wuML/blob/main/examples/data_stats/ipynb/get_stats_on_data_with_missing_entries.ipynb) \
+
 ```python
 from wplotlib import lines
 from sklearn.cluster import SpectralClustering
