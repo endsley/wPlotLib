@@ -1,16 +1,4 @@
 #!/usr/bin/env python
-"""
-.. code-block:: python
-  :linenos:
-
-  textstr = "\\n".join(( r"$\mu=%.2f$" % (0.1, ), r"$\mathrm{median}=%.2f$" % (0, ), r"$\sigma=%.2f$" % (33, )))
-  x = np.linspace(0, 10, 1000)
-  y = np.sin(x)
-  
-  lp = line_plot()
-  lp.plot_line(x, y, "Title Here", "X axis", "Y axis", imgText=textstr)#, outpath)
-"""
-
 from matplotlib import pyplot as plt
 import numpy as np
 
@@ -59,7 +47,7 @@ class lines:
 
 		self.add_plot(X,Y, color, marker)
 
-		plt.tick_params(axis='both', which='both', labelsize=ticker_fontsize)
+		#plt.tick_params(axis='both', which='both', labelsize=ticker_fontsize)
 		plt.xticks(ticks=xtick_locations, labels=xtick_labels, fontsize=ticker_fontsize, rotation=xticker_rotate)
 		plt.yticks(fontsize=ticker_fontsize, rotation=yticker_rotate, ticks=ytick_locations, labels=ytick_labels )
 

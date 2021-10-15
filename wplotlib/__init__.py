@@ -3,4 +3,5 @@ from .scatter import scatter
 from .histograms import histograms
 from .heatMap import heatMap
 from .clusters import cluster_plot
+from .bar import bar
 
