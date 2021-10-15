@@ -18,7 +18,7 @@ class bar:
 		plt.style.use('ggplot')
 		if figsize is not None: plt.figure(figsize=figsize)
 
-	def plot_bar(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
+	def plot_bar(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, horizontal=False,
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
 					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker=',', showImg=True, 
 					xticker_rotate=0, yticker_rotate=0,
@@ -27,17 +27,29 @@ class bar:
 
 
 		x_pos = [i for i, _ in enumerate(X)]
-		plt.bar(x_pos, Y, color=color)
+		if horizontal:
+			plt.barh(x_pos, Y, color=color)
+
+			self.set_ylabel(xlabel, fontsize=self.xfont)
+			self.set_xlabel(ylabel, fontsize=self.yfont)
+			if imgText is not None: 
+				self.add_text(Y, X, imgText, α=yTextShift, β=xTextShift, xTextLoc=yTextLoc, yTextLoc=xTextLoc)
+	
+			plt.yticks(ticks=x_pos, labels=X, fontsize=ticker_fontsize, rotation=xticker_rotate)
+			plt.xticks(fontsize=ticker_fontsize, rotation=yticker_rotate, ticks=ytick_locations, labels=ytick_labels )
+
+		else:
+			plt.bar(x_pos, Y, color=color)
+
+			self.set_xlabel(xlabel, fontsize=self.xfont)
+			self.set_ylabel(ylabel, fontsize=self.yfont)
+			if imgText is not None: 
+				self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
+	
+			plt.xticks(ticks=x_pos, labels=X, fontsize=ticker_fontsize, rotation=xticker_rotate)
+			plt.yticks(fontsize=ticker_fontsize, rotation=yticker_rotate, ticks=ytick_locations, labels=ytick_labels )
 
 		self.set_title(title, fontsize=self.title_font)
-		self.set_xlabel(xlabel, fontsize=self.xfont)
-		self.set_ylabel(ylabel, fontsize=self.yfont)
-		if imgText is not None: 
-			self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
-
-		plt.xticks(ticks=x_pos, labels=X, fontsize=ticker_fontsize, rotation=xticker_rotate)
-		plt.yticks(fontsize=ticker_fontsize, rotation=yticker_rotate, ticks=ytick_locations, labels=ytick_labels )
-
 		plt.tight_layout()
 		if subplot is None:
 			if outpath is not None: plt.savefig(outpath)
