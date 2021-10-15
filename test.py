@@ -24,12 +24,14 @@ from wplotlib import histograms
 #lp.plot_scatter(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr, ticker_fontsize=8 )#, outpath)
 
 
-#	set ticks
-x = np.linspace(0, 10, 40)
-y = np.sin(x)
-
-lp = wplotlib.lines(figsize=(10,5))		# (width, height)
-lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', ticker_fontsize=12, xticker_rotate=90, xtick_locations=[2,4,6], xtick_labels=['A','B','C'])
+##	set ticks
+#x = np.linspace(0, 10, 40)
+#y = np.sin(x)
+#
+##lp = wplotlib.lines(figsize=(10,5))		# (width, height)
+##lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', ticker_fontsize=12, xticker_rotate=90, xtick_locations=[2,4,6], xtick_labels=['A','B','C'])
+#lp = wplotlib.scatter(figsize=(10,5))		# (width, height)
+#lp.plot_scatter(x, y, 'Title Here', 'X axis', 'Y axis', ticker_fontsize=8 , xticker_rotate=90, xtick_locations=[2,4,6], xtick_labels=['A','B','C'])
 
 
 
@@ -58,6 +60,11 @@ lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', ticker_fontsize=12, xticker
 #H.histogram(x, num_bins=10, title='Y Log Scaled Histogram', facecolor='blue', α=0.5, path=None, subplot=122, ylogScale=True)
 #H.show()
 
+#	Heat Map ticker
+K = np.array([[0.7, 0.7, 0, 0],[0.5,0.5,0,0],[0,0,0.4, 0.8], [0,0,0.4, 0.8]])
+hMap = heatMap()
+hMap.draw_HeatMap(K, title='Heat Map', xtick_locations=[0.5, 1.5, 2.5, 3.5], xtick_labels=['A', 'B', 'C','D'],
+					ytick_locations=[0.5, 1.5, 2.5, 3.5], ytick_labels=['A', 'B', 'C','D'])
 
 ##	Heat Map Example
 #X1 = np.random.randn(100,2)

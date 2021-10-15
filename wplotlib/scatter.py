@@ -20,8 +20,9 @@ class scatter:
 
 	def plot_scatter(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
-					ticker_fontsize=9, ticker_rotate=0,
-					xTextLoc=None, yTextLoc=None, color='blue', marker='x'):
+					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker='x',
+					xticker_rotate=0, yticker_rotate=0,
+					xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None):
 		"""create a default 2D line plot
 		
 		: X: (float) the values for x-axis
@@ -55,8 +56,12 @@ class scatter:
 		self.set_ylabel(ylabel, fontsize=self.yfont)
 		self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
 
-		plt.tick_params(axis='both', which='both', labelsize=ticker_fontsize)
-		plt.xticks(fontsize=ticker_fontsize, rotation=ticker_rotate)
+		#plt.tick_params(axis='both', which='both', labelsize=ticker_fontsize)
+		plt.xticks(ticks=xtick_locations, labels=xtick_labels, fontsize=ticker_fontsize, rotation=xticker_rotate)
+		plt.yticks(fontsize=ticker_fontsize, rotation=yticker_rotate, ticks=ytick_locations, labels=ytick_labels )
+
+
+
 
 
 		if xlim is not None: plt.xlim(xlim)

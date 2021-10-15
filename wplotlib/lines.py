@@ -31,8 +31,8 @@ class lines:
 
 	def plot_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
-					ticker_fontsize=9, xticker_rotate=0, yticker_rotate=0,
-					xTextLoc=None, yTextLoc=None, color='blue', marker=',', showImg=True, 
+					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker=',', showImg=True, 
+					xticker_rotate=0, yticker_rotate=0,
 					xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None):
 		"""create a default 2D line plot
 		
