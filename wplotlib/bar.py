@@ -21,7 +21,7 @@ class bar:
 	def plot_bar(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, horizontal=False,
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
 					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker=',', showImg=True, 
-					xticker_rotate=0, yticker_rotate=0,
+					xtick_labels=None, xticker_rotate=0, yticker_rotate=0,
 					ytick_locations=None, ytick_labels=None):
 
 
@@ -36,7 +36,9 @@ class bar:
 			if imgText is not None: 
 				self.add_text(Y, X, imgText, α=yTextShift, β=xTextShift, xTextLoc=yTextLoc, yTextLoc=xTextLoc)
 	
-			plt.yticks(ticks=x_pos, labels=X, fontsize=ticker_fontsize, rotation=xticker_rotate)
+			if xtick_labels is None: plt.yticks(ticks=x_pos, labels=X, fontsize=ticker_fontsize, rotation=xticker_rotate)
+			else: plt.yticks(ticks=x_pos, labels=xtick_labels, fontsize=ticker_fontsize, rotation=xticker_rotate)
+
 			plt.xticks(fontsize=ticker_fontsize, rotation=yticker_rotate, ticks=ytick_locations, labels=ytick_labels )
 
 		else:
@@ -46,8 +48,9 @@ class bar:
 			self.set_ylabel(ylabel, fontsize=self.yfont)
 			if imgText is not None: 
 				self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
-	
-			plt.xticks(ticks=x_pos, labels=X, fontsize=ticker_fontsize, rotation=xticker_rotate)
+
+			if xtick_labels is None: plt.xticks(ticks=x_pos, labels=X, fontsize=ticker_fontsize, rotation=xticker_rotate)
+			else: plt.xticks(ticks=x_pos, labels=xtick_labels, fontsize=ticker_fontsize, rotation=xticker_rotate)
 			plt.yticks(fontsize=ticker_fontsize, rotation=yticker_rotate, ticks=ytick_locations, labels=ytick_labels )
 
 		self.set_title(title, fontsize=self.title_font)
@@ -58,13 +61,24 @@ class bar:
 
 	def add_text(self, X, Y, textstr, α=0.05, β=0.95, xTextLoc=None, yTextLoc=None):
 		if textstr is None: return
-		mX = np.min(X)
-		mY = np.min(Y)
+		try: 
+			mX = np.min(X)
+			maX = np.max(X)
+		except: 
+			mX = 1
+			maX = len(X)
 
-		if xTextLoc is None: xLoc = α*(np.max(X) - mX) + mX
+		try: 
+			mY = np.min(Y)
+			maY = np.max(Y)
+		except: 
+			mY = 1
+			maY = len(Y)
+
+		if xTextLoc is None: xLoc = α*(maX - mX) + mX
 		else: xLoc = xTextLoc
 
-		if yTextLoc is None: yLoc = β*(np.max(Y) - mY) + mY
+		if yTextLoc is None: yLoc = β*(maY - mY) + mY
 		else: yLoc = yTextLoc
 
 		props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
