@@ -79,3 +79,17 @@ class bar:
 	def set_ylabel(self, ylabel, fontsize=16):
 		plt.ylabel(ylabel, fontsize=fontsize)
 
+	def show(self, save_path=None, title=None, xlabel=None, ylabel=None, imgText=None, 
+					xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
+					xTextLoc=None, yTextLoc=None):
+
+		if title is not None: self.set_title(title, fontsize=self.title_font)
+		if xlabel is not None: self.set_xlabel(xlabel, fontsize=self.xfont)
+		if ylabel is not None: self.set_ylabel(ylabel, fontsize=self.yfont)
+		if imgText is not None: 
+			self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
+
+		if save_path is None: plt.show()
+		else: plt.savefig(save_path)
+
+
