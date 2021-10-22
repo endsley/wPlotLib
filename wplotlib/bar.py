@@ -34,7 +34,7 @@ class bar:
 			self.set_ylabel(xlabel, fontsize=self.xfont)
 			self.set_xlabel(ylabel, fontsize=self.yfont)
 			if imgText is not None: 
-				self.add_text(Y, X, imgText, α=yTextShift, β=xTextShift, xTextLoc=yTextLoc, yTextLoc=xTextLoc)
+				self.add_text(Y, x_pos, imgText, α=yTextShift, β=xTextShift, xTextLoc=yTextLoc, yTextLoc=xTextLoc)
 	
 			if xtick_labels is None: plt.yticks(ticks=x_pos, labels=X, fontsize=ticker_fontsize, rotation=xticker_rotate)
 			else: plt.yticks(ticks=x_pos, labels=xtick_labels, fontsize=ticker_fontsize, rotation=xticker_rotate)
@@ -47,7 +47,7 @@ class bar:
 			self.set_xlabel(xlabel, fontsize=self.xfont)
 			self.set_ylabel(ylabel, fontsize=self.yfont)
 			if imgText is not None: 
-				self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
+				self.add_text(x_pos, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
 
 			if xtick_labels is None: plt.xticks(ticks=x_pos, labels=X, fontsize=ticker_fontsize, rotation=xticker_rotate)
 			else: plt.xticks(ticks=x_pos, labels=xtick_labels, fontsize=ticker_fontsize, rotation=xticker_rotate)
@@ -61,19 +61,11 @@ class bar:
 
 	def add_text(self, X, Y, textstr, α=0.05, β=0.95, xTextLoc=None, yTextLoc=None):
 		if textstr is None: return
-		try: 
-			mX = np.min(X)
-			maX = np.max(X)
-		except: 
-			mX = 1
-			maX = len(X)
+		mX = np.min(X)
+		maX = np.max(X)
 
-		try: 
-			mY = np.min(Y)
-			maY = np.max(Y)
-		except: 
-			mY = 1
-			maY = len(Y)
+		mY = np.min(Y)
+		maY = np.max(Y)
 
 		if xTextLoc is None: xLoc = α*(maX - mX) + mX
 		else: xLoc = xTextLoc
