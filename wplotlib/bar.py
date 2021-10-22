@@ -26,6 +26,7 @@ class bar:
 
 
 
+		if subplot is not None: plt.subplot(subplot)
 		x_pos = [i for i, _ in enumerate(X)]
 		if horizontal:
 			plt.barh(x_pos, Y, color=color)

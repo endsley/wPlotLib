@@ -17,7 +17,7 @@ from setuptools import setup
 setup(
   name = 'wplotlib',         # How you named your package folder (MyLib)
   packages = ['wplotlib'],   # Chose the same as "name"
-  version = '0.41',      # Start with a small number and increase it with every change you make
+  version = '0.42',      # Start with a small number and increase it with every change you make
   license='MIT',        # Chose a license from here: https://help.github.com/articles/licensing-a-repository
   description = 'A library that simplifies some basic plotting.',   # Give a short description about your library
   long_description='https://github.com/endsley/wPlotLib',
@@ -26,7 +26,7 @@ setup(
   author = 'Chieh Wu',                   # Type in your name
   author_email = 'chieh.t.wu@gmail.com',      # Type in your E-Mail
   url = 'https://github.com/endsley/wPlotLib.git',   # Provide either the link to your github or to your website
-  download_url = 'https://github.com/endsley/wPlotLib/archive/refs/tags/0.41.tar.gz',    # I explain this later on
+  download_url = 'https://github.com/endsley/wPlotLib/archive/refs/tags/0.42.tar.gz',    # I explain this later on
   keywords = ['plot', 'data'],   # Keywords that define your package best
   include_package_data=False,
   install_requires=[            # I get to this in a second
