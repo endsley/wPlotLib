@@ -60,15 +60,13 @@ class scatter:
 		plt.xticks(ticks=xtick_locations, labels=xtick_labels, fontsize=ticker_fontsize, rotation=xticker_rotate)
 		plt.yticks(fontsize=ticker_fontsize, rotation=yticker_rotate, ticks=ytick_locations, labels=ytick_labels )
 
-
-
-
-
 		if xlim is not None: plt.xlim(xlim)
 		if ylim is not None: plt.ylim(ylim)
 		
 		if subplot is None:
-			if outpath is None: plt.show()
+			if outpath is None: 
+				plt.tight_layout()
+				plt.show()
 			else: plt.savefig(outpath)
 
 	def add_text(self, X, Y, textstr, α=0.05, β=0.95, xTextLoc=None, yTextLoc=None):
@@ -111,18 +109,19 @@ class scatter:
 
 		plt.scatter(X, Y, color=color, marker=marker)
 
-	def show(self, save_path=None, title='', xlabel='', ylabel='', imgText=None, 
+	def show(self, save_path=None, title=None, xlabel=None, ylabel=None, imgText=None, 
 					xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
 					xTextLoc=None, yTextLoc=None):
 
-
-		self.set_title(title, fontsize=self.title_font)
-		self.set_xlabel(xlabel, fontsize=self.xfont)
-		self.set_ylabel(ylabel, fontsize=self.yfont)
-		if imgText is not None:
+		if title is not None: self.set_title(title, fontsize=self.title_font)
+		if xlabel is not None: self.set_xlabel(xlabel, fontsize=self.xfont)
+		if ylabel is not None: self.set_ylabel(ylabel, fontsize=self.yfont)
+		if imgText is not None: 
 			self.add_text(self.X, self.Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
 
-		if save_path is None: plt.show()
+		if save_path is None: 
+			plt.tight_layout()
+			plt.show()
 		else: plt.savefig(save_path)
 
 
@@ -134,7 +133,9 @@ class scatter:
 		
 		plt.plot(x, y, 'k-')
 		plt.fill_between(x, y-error, y+error)
-		if show: plt.show()
+		if show: 
+			plt.tight_layout()
+			plt.show()
 
 
 if __name__ == "__main__":

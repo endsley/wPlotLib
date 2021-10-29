@@ -12,7 +12,8 @@ import matplotlib.pyplot as plt
 
 class plot_clusters:
 	def __init__(self, X, allocation, title='', xlabel='', ylabel='', 
-					figsize=None, fsize=14, useGrid=True, subplot=None):
+					figsize=None, fsize=14, useGrid=True, subplot=None, imgText=None, 
+					xTextShift=0.05, yTextShift=0.95, xTextLoc=None, yTextLoc=None):
 		X = wuml.ensure_numpy(X)
 
 		cmap = ['b', 'g', 'r', 'c', 'm', 'y','k']
@@ -45,10 +46,26 @@ class plot_clusters:
 		plt.xlabel(xlabel)
 		plt.ylabel(ylabel)
 		plt.title(title, fontsize=fsize)
+		self.add_text(X[:,0], X[:,1], imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
 		if useGrid: plt.grid(linestyle='dotted')
 		if subplot is None: 
 			plt.tight_layout()
 			plt.show()
+
+	def add_text(self, X, Y, textstr, α=0.05, β=0.95, xTextLoc=None, yTextLoc=None):
+		if textstr is None: return
+		mX = np.min(X)
+		mY = np.min(Y)
+
+		if xTextLoc is None: xLoc = α*(np.max(X) - mX) + mX
+		else: xLoc = xTextLoc
+
+		if yTextLoc is None: yLoc = β*(np.max(Y) - mY) + mY
+		else: yLoc = yTextLoc
+
+		props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+		plt.text(xLoc, yLoc, textstr, fontsize=14, verticalalignment='top', bbox=props)
+
 
 	def show(self):
 		#plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)
