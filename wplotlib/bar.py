@@ -5,26 +5,37 @@ import numpy as np
 
 class bar:
 	"""A class that generates basic bar plots"""
-	def __init__(self, title_font=16, xfont=16, yfont=16, figsize=None):
+	def __init__(self, X, Y, title='', xlabel='', ylabel='', imgText=None, outpath=None, horizontal=False,
+					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
+					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker=',', show=True, 
+					xtick_labels=None, xticker_rotate=0, yticker_rotate=0,
+					ytick_locations=None, ytick_labels=None, 
+					title_font=16, xfont=16, yfont=16, figsize=None):
+
 		"""calculates the probability that "token" is found in spam emails
 		
 		:param token: (str)
 		:return: (float) probability "token" is spam based on training emails
 		"""
+
 		self.title_font = title_font
 		self.xfont = xfont
 		self.yfont = yfont
 		self.already_called_plot_line = False
 		plt.style.use('ggplot')
 		if figsize is not None: plt.figure(figsize=figsize)
+	
+		self.plot_bar(X=X, Y=Y, title=title, xlabel=xlabel, ylabel=ylabel, imgText=imgText, outpath=outpath, horizontal=horizontal,
+					subplot=subplot, xlim=xlim, ylim=ylim, xTextShift=xTextShift, yTextShift=yTextShift,
+					ticker_fontsize=ticker_fontsize, xTextLoc=xTextLoc, yTextLoc=yTextLoc, color=color, marker=marker, show=show, 
+					xtick_labels=None, xticker_rotate=0, yticker_rotate=0,
+					ytick_locations=None, ytick_labels=None)
 
 	def plot_bar(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, horizontal=False,
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
-					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker=',', showImg=True, 
+					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker=',', show=True, 
 					xtick_labels=None, xticker_rotate=0, yticker_rotate=0,
 					ytick_locations=None, ytick_labels=None):
-
-
 
 		if subplot is not None: plt.subplot(subplot)
 		x_pos = [i for i, _ in enumerate(X)]
@@ -57,7 +68,7 @@ class bar:
 		plt.tight_layout()
 		if subplot is None:
 			if outpath is not None: plt.savefig(outpath)
-			if showImg: plt.show()
+			if show: plt.show()
 
 	def add_text(self, X, Y, textstr, α=0.05, β=0.95, xTextLoc=None, yTextLoc=None):
 		if textstr is None: return

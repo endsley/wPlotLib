@@ -28,7 +28,7 @@ hMap = heatMap()
 sorted_kernel = hMap.sort_kernel(kernel, allocation)
 
 hMap.draw_HeatMap(kernel, title='Drawing Unsorted Heat Map', subplot=121)
-hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map')
+hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map', subplot=122)
 
 
 

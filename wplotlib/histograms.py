@@ -4,19 +4,27 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 class histograms:
-	def __init__(self, title_font=12, xfont=12, yfont=12, figsize=None):
+	def __init__(self, x, num_bins=10, title='', fontsize=12, facecolor='blue', α=0.5, 
+			xlabel='', ylabel='', ticker_fontsize=9, ticker_rotate=0,
+			path=None, subplot=None, ylogScale=False, show=True, normalize=False, 
+			title_font=12, xfont=12, yfont=12, figsize=None):
+
 		self.title_font = title_font
 		self.xfont = xfont
 		self.yfont = yfont
 		self.already_called_plot_line = False
 		if figsize is not None: plt.figure(figsize=figsize)
 
+		self.histogram(x=x, num_bins=num_bins, title=title, fontsize=fontsize, facecolor=facecolor, 
+				α=α, xlabel=xlabel, ylabel=ylabel, ticker_fontsize=ticker_fontsize, ticker_rotate=ticker_rotate, 
+				path=path, subplot=subplot, ylogScale=ylogScale, show=show, normalize=normalize)
+
 	def histogram(self, x, num_bins=10, title='', fontsize=12, facecolor='blue', α=0.5, 
 			xlabel='', ylabel='', ticker_fontsize=9, ticker_rotate=0,
-			path=None, subplot=None, ylogScale=False, showImg=True, normalize=False):
+			path=None, subplot=None, ylogScale=False, show=True, normalize=False):
 		'''
 			normalize 	: Show the probability instead of count
-			showImg		: Calls the show function at the end
+			show		: Calls the show function at the end
 		'''
 
 		if subplot is not None: plt.subplot(subplot)
@@ -44,7 +52,7 @@ class histograms:
 	
 		if subplot is None:
 			if path is not None: plt.savefig(path)
-			if showImg: plt.show()
+			if show: plt.show()
 
 	def show(self, save_path=None):
 		if save_path is None: plt.show()
