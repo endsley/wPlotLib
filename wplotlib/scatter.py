@@ -6,7 +6,12 @@ import numpy as np
 
 class scatter:
 	"""A class that generates basic scatter plots"""
-	def __init__(self, title_font=16, xfont=16, yfont=16, figsize=None):
+	def __init__(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
+					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
+					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker='x',
+					xticker_rotate=0, yticker_rotate=0,
+					xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None, 
+					title_font=16, xfont=16, yfont=16, figsize=None):
 		"""calculates the probability that "token" is found in spam emails
 		
 		:param token: (str)
@@ -16,7 +21,14 @@ class scatter:
 		self.xfont = xfont
 		self.yfont = yfont
 		self.already_called_plot_line = False
-		if figsize is not None: plt.figure(figsize=figsize)
+		if subplot is None and figsize is not None: plt.figure(figsize=figsize)
+
+		self.plot_scatter(X=X, Y=Y, title=title, xlabel=xlabel, ylabel=ylabel, imgText=imgText, outpath=outpath, 
+					subplot=subplot, xlim=xlim, ylim=ylim, xTextShift=xTextShift, yTextShift=yTextShift,
+					ticker_fontsize=ticker_fontsize, xTextLoc=xTextLoc, yTextLoc=yTextLoc, 
+					color=color, marker=marker, xticker_rotate=xticker_rotate, yticker_rotate=yticker_rotate,
+					xtick_locations=xtick_locations, xtick_labels=xtick_labels, 
+					ytick_locations=ytick_locations, ytick_labels=ytick_labels)
 
 	def plot_scatter(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
@@ -119,6 +131,7 @@ class scatter:
 		if imgText is not None: 
 			self.add_text(self.X, self.Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
 
+		plt.tight_layout()
 		if save_path is None: 
 			plt.tight_layout()
 			plt.show()
