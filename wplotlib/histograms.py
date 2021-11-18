@@ -2,6 +2,7 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
+import wuml
 
 class histograms:
 	def __init__(self, x, num_bins=10, title='', fontsize=12, facecolor='blue', α=0.5, 
@@ -26,7 +27,7 @@ class histograms:
 			normalize 	: Show the probability instead of count
 			show		: Calls the show function at the end
 		'''
-
+		x = wuml.ensure_numpy(x)
 		if subplot is not None: plt.subplot(subplot)
 
 
@@ -37,6 +38,7 @@ class histograms:
 		plt.xlabel(xlabel, fontsize=fontsize)
 		plt.ylabel(ylabel, fontsize=fontsize)
 		plt.title(title, fontsize=fontsize)
+
 		n, bins, patches = plt.hist(x, num_bins, facecolor=facecolor, alpha=α, density=normalize)
 		if ylogScale: plt.yscale('log', nonpositive='clip')
 		plt.tight_layout()
