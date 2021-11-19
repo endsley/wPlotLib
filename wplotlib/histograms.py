@@ -10,6 +10,7 @@ class histograms:
 			path=None, subplot=None, ylogScale=False, show=True, normalize=False, 
 			title_font=12, xfont=12, yfont=12, figsize=None):
 
+		x = wuml.ensure_numpy(x)
 		self.title_font = title_font
 		self.xfont = xfont
 		self.yfont = yfont

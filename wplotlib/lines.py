@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 from matplotlib import pyplot as plt
+import matplotlib
 import numpy as np
 
 
@@ -16,6 +17,9 @@ class lines:
 		:param token: (str)
 		:return: (float) probability "token" is spam based on training emails
 		"""
+		font = {'family' : 'normal', 'weight' : 'bold', 'size'   : title_font}
+		matplotlib.rc('font', **font)
+
 		self.title_font = title_font
 		self.xfont = xfont
 		self.yfont = yfont

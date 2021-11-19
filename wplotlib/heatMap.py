@@ -12,13 +12,30 @@ from sklearn.utils import shuffle
 
 
 class heatMap:
-	def __init__(self):
+	def __init__(self, kernel, title='', xlabel='Features', ylabel='Samples', ticker_fontsize=9,
+						fsize=14, use_seaborn=False, vmin=0, vmax=1, 
+						center=None, linewidths=0, cmap=None, path='', subplot=None,
+						xticker_rotate=0, yticker_rotate=0,
+						xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None, figsize=None):
+
 		self.plot_font_size = 4
 		font = {'family' : 'normal', 'weight' : 'bold', 'size'   : self.plot_font_size}
 		matplotlib.rc('font', **font)
 		self.cluster_by_id = {}
 		self.cluster_by_name = {}
-		#plt.figure(figsize=figsize)
+
+		if figsize is not None: plt.figure(figsize=figsize)
+
+
+		self.draw_HeatMap(kernel, title=title, xlabel=xlabel, ylabel=ylabel, ticker_fontsize=ticker_fontsize,
+						fsize=fsize, use_seaborn=use_seaborn, vmin=vmin, vmax=vmax, 
+						center=center, linewidths=linewidths, cmap=cmap, path=path, subplot=subplot,
+						xticker_rotate=xticker_rotate, yticker_rotate=yticker_rotate,
+						xtick_locations=xtick_locations, xtick_labels=xtick_labels, 
+						ytick_locations=ytick_locations, ytick_labels=ytick_labels)
+
+
+
 
 	def sort_kernel(self, kernel, allocation, item_labels=[] ):
 		alloc_list = np.unique(allocation) 
@@ -59,7 +76,7 @@ class heatMap:
 	def draw_HeatMap(self, kernel, title='', 
 						xlabel='Features', ylabel='Samples', ticker_fontsize=9,
 						fsize=14, use_seaborn=False, vmin=0, vmax=1, 
-						center=None, linewidths=0, cmap=None, path='', subplot=None,
+						center=None, linewidths=0, cmap=None, path=None, subplot=None,
 						xticker_rotate=0, yticker_rotate=0,
 						xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None):
 
@@ -80,6 +97,7 @@ class heatMap:
 			#else: fig, ax = plt.subplots(subplot)
 			#fig.set_size_inches(13,13)
 
+			if subplot is not None: plt.subplot(subplot)
 			heatmap = plt.pcolor(kernel, cmap=matplotlib.cm.Blues, alpha=0.8)
 
 			#yTicklabel = list(reversed(yTicklabel))
@@ -103,15 +121,18 @@ class heatMap:
 			if xlabel != '': plt.xlabel(xlabel, fontsize=fsize)
 			if ylabel != '': plt.ylabel(ylabel, fontsize=fsize)
 		
-			if path == '':
-				plt.tight_layout()
-				plt.show() 
-			else:
-				plt.draw()	
-				fig.savefig(path, dpi=500)
+
+			if subplot is None:
+				if outpath is not None: plt.savefig(outpath)
+				if show: 
+					plt.tight_layout()
+					plt.show()
 
 		return plt
 
+	def show(self):
+		plt.tight_layout()
+		plt.show()
 
 if __name__ == "__main__":
 	X1 = np.random.randn(100,2)
