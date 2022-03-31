@@ -2,7 +2,7 @@
 
 
 import numpy as np; np.random.seed(0)
-import seaborn as sns; sns.set_theme()
+import seaborn as sns
 from matplotlib import pyplot as plt
 import matplotlib
 from numpy import genfromtxt
