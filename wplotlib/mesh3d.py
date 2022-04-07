@@ -60,6 +60,7 @@ class mesh3d:
 		plt.yticks(fontsize=ticker_fontsize, rotation=yticker_rotate, ticks=ytick_locations, labels=ytick_labels )
 		plt.tick_params(axis='z', which='major', labelsize=ticker_fontsize, rotation=zticker_rotate)
 
+		plt.tight_layout()
 		plt.show()
 
 
@@ -175,23 +176,29 @@ class mesh3d:
 
 
 if __name__ == "__main__":
-	#textstr = '\n'.join(( r'$\mu=%.2f$' % (0.1, ), r'$\mathrm{median}=%.2f$' % (0, ), r'$\sigma=%.2f$' % (33, )))
-	#x = np.linspace(0, 10, 1000)
-	#y = np.sin(x)
+#	# Example 1
+#	def f(x, y):
+#		return np.sin(np.sqrt(x ** 2 + y ** 2))
+#
+#	x = np.linspace(-6, 6, 30)
+#	y = np.linspace(-6, 6, 30)
+#	
+#	X, Y = np.meshgrid(x, y)
+#	Z = f(X, Y)
+#
+#	mesh3d(X, Y, Z, title='Set Title Here', xlabel='xlable', ylabel='ylable', zlabel='zlable', meshType='wire')
+#	import pdb; pdb.set_trace()
 
-	#lp = lines()
-	#lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr)#, outpath)
-
-
-
+	# Example 2
 	def f(x, y):
-		return np.sin(np.sqrt(x ** 2 + y ** 2))
+		loss = 5* x**2 + 6*x*y - 16*x + 3*y**2 - 12*y + 14
+		return loss
 
-	x = np.linspace(-6, 6, 30)
-	y = np.linspace(-6, 6, 30)
+	x = np.linspace(-5, 5, 10)
+	y = np.linspace(-5, 5, 10)
 	
 	X, Y = np.meshgrid(x, y)
 	Z = f(X, Y)
 
-	mesh3d(X, Y, Z, title='Set Title Here', xlabel='xlable', ylabel='ylable', zlabel='zlable', meshType='wire')
+	mesh3d(X, Y, Z, title='Error at different α,β', xlabel='α', ylabel='β', zlabel='error', meshType='wire')
 	import pdb; pdb.set_trace()

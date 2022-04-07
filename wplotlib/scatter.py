@@ -23,6 +23,10 @@ class scatter:
 		self.already_called_plot_line = False
 		if figsize is not None: plt.figure(figsize=figsize)
 
+		#plt.grid(True, which='both')
+		plt.axhline(y=0, color='k')
+		plt.axvline(x=0, color='k')
+
 		self.plot_scatter(X=X, Y=Y, title=title, xlabel=xlabel, ylabel=ylabel, imgText=imgText, outpath=outpath, 
 					subplot=subplot, xlim=xlim, ylim=ylim, xTextShift=xTextShift, yTextShift=yTextShift,
 					ticker_fontsize=ticker_fontsize, xTextLoc=xTextLoc, yTextLoc=yTextLoc, 
@@ -151,9 +155,17 @@ class scatter:
 
 
 if __name__ == "__main__":
-	textstr = '\n'.join(( r'$\mu=%.2f$' % (0.1, ), r'$\mathrm{median}=%.2f$' % (0, ), r'$\sigma=%.2f$' % (33, )))
-	x = np.linspace(0, 10, 1000)
-	y = np.sin(x)
+##	Example 1	
+#	textstr = '\n'.join(( r'$\mu=%.2f$' % (0.1, ), r'$\mathrm{median}=%.2f$' % (0, ), r'$\sigma=%.2f$' % (33, )))
+#	x = np.linspace(0, 10, 1000)
+#	y = np.sin(x)
+#
+#	lp = lines()
+#	lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr)#, outpath)
 
-	lp = lines()
-	lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr)#, outpath)
+#	Example 2
+	textstr = '\n'.join(( r'$\mu=%.2f$' % (0.1, ), r'$\mathrm{median}=%.2f$' % (0, ), r'$\sigma=%.2f$' % (33, )))
+	x = np.array([0,1,2])
+	y = np.array([1,2,3])
+	textstr = 'X   Y\n-----\n0   1\n1   2\n2   3'
+	pt = scatter(x, y, 'Mysterious Data We Want to Model', 'X axis', 'Y axis', xlim=[-2,6], ylim=[-2,6], imgText=textstr, xTextLoc=-1.5, yTextLoc=5.5)

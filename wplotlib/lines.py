@@ -144,9 +144,9 @@ class lines:
 
 
 if __name__ == "__main__":
-	textstr = '\n'.join(( r'$\mu=%.2f$' % (0.1, ), r'$\mathrm{median}=%.2f$' % (0, ), r'$\sigma=%.2f$' % (33, )))
-	x = np.linspace(0, 10, 1000)
-	y = np.sin(x)
+	#textstr = '\n'.join(( r'$\mu=%.2f$' % (0.1, ), r'$\mathrm{median}=%.2f$' % (0, ), r'$\sigma=%.2f$' % (33, )))
+	textstr = r'$f(x)=\alpha^2$'
+	x = np.linspace(-3, 3, 20)
+	y = x**2
 
-	lp = lines()
-	lp.plot_line(x, y, 'Title Here', 'X axis', 'Y axis', imgText=textstr)#, outpath)
+	lp = lines(x, y, 'Simplified Problem', 'α', 'error', imgText=textstr)
