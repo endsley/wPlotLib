@@ -28,7 +28,7 @@ class bar:
 		self.plot_bar(X=X, Y=Y, title=title, xlabel=xlabel, ylabel=ylabel, imgText=imgText, outpath=outpath, horizontal=horizontal,
 					subplot=subplot, xlim=xlim, ylim=ylim, xTextShift=xTextShift, yTextShift=yTextShift,
 					ticker_fontsize=ticker_fontsize, xTextLoc=xTextLoc, yTextLoc=yTextLoc, color=color, marker=marker, show=show, 
-					xtick_labels=None, xticker_rotate=0, yticker_rotate=0,
+					xtick_labels=None, xticker_rotate=xticker_rotate, yticker_rotate=0,
 					ytick_locations=None, ytick_labels=None)
 
 	def plot_bar(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, horizontal=False,
