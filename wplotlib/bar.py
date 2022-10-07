@@ -10,7 +10,7 @@ class bar:
 					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker=',', show=True, 
 					xtick_labels=None, xticker_rotate=0, yticker_rotate=0,
 					ytick_locations=None, ytick_labels=None, 
-					title_font=16, xfont=16, yfont=16, figsize=None):
+					title_font=16, xfont=16, yfont=16, figsize=None, disable_xticks=False, disable_yticks=False):
 
 		"""calculates the probability that "token" is found in spam emails
 		
@@ -30,6 +30,15 @@ class bar:
 					ticker_fontsize=ticker_fontsize, xTextLoc=xTextLoc, yTextLoc=yTextLoc, color=color, marker=marker, show=show, 
 					xtick_labels=None, xticker_rotate=xticker_rotate, yticker_rotate=0,
 					ytick_locations=None, ytick_labels=None)
+
+		if disable_xticks: self.disable_xticks()
+		if disable_yticks: self.disable_yticks()
+
+	def disable_xticks(self):
+		plt.xticks([])
+
+	def disable_yticks(self):
+		plt.yticks([])
 
 	def plot_bar(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, horizontal=False,
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
