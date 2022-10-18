@@ -10,11 +10,13 @@ class scatter:
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
 					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker='x',
 					xticker_rotate=0, yticker_rotate=0,
+					x_origin_axis_color=None, y_origin_axis_color=None,
 					xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None, 
 					title_font=16, xfont=16, yfont=16, figsize=None, show=True):
 		"""calculates the probability that "token" is found in spam emails
-		
 		:param token: (str)
+		x_origin_axis_color	: 'k' is default black, or 'red'
+		y_origin_axis_color
 		:return: (float) probability "token" is spam based on training emails
 		"""
 		self.title_font = title_font
@@ -24,8 +26,10 @@ class scatter:
 		if figsize is not None: plt.figure(figsize=figsize)
 
 		#plt.grid(True, which='both')
-		plt.axhline(y=0, color='k')
-		plt.axvline(x=0, color='k')
+		if x_origin_axis_color is not None:
+			plt.axvline(x=0, color=x_origin_axis_color)
+		if y_origin_axis_color is not None:
+			plt.axhline(y=0, color=x_origin_axis_color)
 
 		self.plot_scatter(X=X, Y=Y, title=title, xlabel=xlabel, ylabel=ylabel, imgText=imgText, outpath=outpath, 
 					subplot=subplot, xlim=xlim, ylim=ylim, xTextShift=xTextShift, yTextShift=yTextShift,

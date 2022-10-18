@@ -13,9 +13,9 @@ from sklearn.utils import shuffle
 
 class heatMap:
 	def __init__(self, kernel, title='', xlabel='Features', ylabel='Samples', ticker_fontsize=9,
-						fsize=14, use_seaborn=False, vmin=0, vmax=1, 
-						center=None, linewidths=0, cmap=None, path='', subplot=None,
-						xticker_rotate=0, yticker_rotate=0,
+						fsize=14, use_seaborn=False, vmin=0, vmax=1, show=True,
+						center=None, linewidths=0, cmap=None, outpath='', subplot=None,
+						xticker_rotate=0, yticker_rotate=0, sort_kernel_based_on_label=False, label=None, 
 						xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None, figsize=None):
 
 		self.plot_font_size = 4
@@ -27,9 +27,12 @@ class heatMap:
 		if figsize is not None: plt.figure(figsize=figsize)
 
 
+		if sort_kernel_based_on_label:
+			kernel = self.sort_kernel(kernel, label)
+
 		self.draw_HeatMap(kernel, title=title, xlabel=xlabel, ylabel=ylabel, ticker_fontsize=ticker_fontsize,
-						fsize=fsize, use_seaborn=use_seaborn, vmin=vmin, vmax=vmax, 
-						center=center, linewidths=linewidths, cmap=cmap, path=path, subplot=subplot,
+						fsize=fsize, use_seaborn=use_seaborn, vmin=vmin, vmax=vmax, show=show,
+						center=center, linewidths=linewidths, cmap=cmap, outpath=outpath, subplot=subplot,
 						xticker_rotate=xticker_rotate, yticker_rotate=yticker_rotate,
 						xtick_locations=xtick_locations, xtick_labels=xtick_labels, 
 						ytick_locations=ytick_locations, ytick_labels=ytick_labels)
@@ -76,8 +79,8 @@ class heatMap:
 	def draw_HeatMap(self, kernel, title='', 
 						xlabel='Features', ylabel='Samples', ticker_fontsize=9,
 						fsize=14, use_seaborn=False, vmin=0, vmax=1, 
-						center=None, linewidths=0, cmap=None, path=None, subplot=None,
-						xticker_rotate=0, yticker_rotate=0,
+						center=None, linewidths=0, cmap=None, outpath=None, subplot=None,
+						xticker_rotate=0, yticker_rotate=0, show=False,
 						xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None):
 
 		if use_seaborn:
@@ -135,26 +138,24 @@ class heatMap:
 		plt.show()
 
 if __name__ == "__main__":
+	#	Heat Map ticker
+	K = np.array([[0.7, 0.7, 0, 0],[0.5,0.5,0,0],[0,0,0.4, 0.8], [0,0,0.4, 0.8]])
+	hMap = heatMap(K, title='Heat Map', xtick_locations=[0.5, 1.5, 2.5, 3.5], xtick_labels=['A', 'B', 'C','D'],
+						ytick_locations=[0.5, 1.5, 2.5, 3.5], ytick_labels=['A', 'B', 'C','D'])
+	
+	#	Heat Map Example
 	X1 = np.random.randn(100,2)
 	X2 = np.random.randn(100,2) + 5
 	X = np.vstack((X1,X2))
-
-	Y1 = np.ones(100)
-	Y2 = np.zeros(100)
-	Y = np.hstack((Y1,Y2))
-
-	X_sparse = coo_matrix(X)
-	X, X_sparse, y = shuffle(X, X_sparse, Y, random_state=0) 
-
-
+	np.random.shuffle(X)		# randomly shuffle the rows of X
+	
 	clf = SpectralClustering(n_clusters=2)
 	allocation = clf.fit_predict(X)
 	kernel = clf.affinity_matrix_
 	axis_label = range(kernel.shape[0])
-	hMap = heatMap()
-	sorted_kernel = hMap.sort_kernel(kernel, allocation)
+	
+	hM = heatMap(kernel, title='Drawing Unsorted Heat Map', sort_kernel_based_on_label=False, subplot=121, figsize=(10,5))
+	heatMap(kernel, title='Drawing Sorted Heat Map', sort_kernel_based_on_label=True, label=allocation, subplot=122)
+	hM.show()
 
-	hMap.draw_HeatMap(kernel, title='Drawing Unsorted Heat Map', fsize=14)
-	hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map', fsize=14)
-	hMap.draw_HeatMap(sorted_kernel, title='Drawing Sorted Heat Map', use_seaborn=True, vmin=0, vmax=1, center=None, linewidths=0, cmap=None, fsize=14)
 	#cmap types: "Blues", "YlGnBu", "BuPu", "Greens", None
