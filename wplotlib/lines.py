@@ -24,6 +24,8 @@ class lines:
 		self.xfont = xfont
 		self.yfont = yfont
 		self.already_called_plot_line = False
+		self.X = X
+		self.Y = Y
 
 		if figsize is not None: plt.figure(figsize=figsize)
 
@@ -98,6 +100,11 @@ class lines:
 		plt.text(xLoc, yLoc, textstr, fontsize=14, verticalalignment='top', bbox=props)
 
 
+	def fill_area(self, x=None, y=None, color='blue'):
+		if x is None: x = self.X
+		if y is None: y = self.Y
+
+		plt.fill_between(x, y, color=color)
 
 	def set_title(self, title, fontsize=16):
 		plt.title(title, fontsize=fontsize)
