@@ -11,10 +11,11 @@ class lines:
 					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker=',', show=True, 
 					xticker_rotate=0, yticker_rotate=0,
 					xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None, 
-					title_font=16, xfont=16, yfont=16, figsize=None, grid=False):
+					title_font=16, xfont=16, yfont=16, figsize=None, grid=False, fill_area=None):
 		"""calculates the probability that "token" is found in spam emails
 		
 		:param token: (str)
+						xlim=(0,5) ylim=(0,5)
 		:return: (float) probability "token" is spam based on training emails
 		"""
 		font = {'family' : 'normal', 'weight' : 'bold', 'size'   : title_font}
@@ -34,12 +35,12 @@ class lines:
 					ticker_fontsize=ticker_fontsize, xTextLoc=xTextLoc, yTextLoc=yTextLoc, color=color, 
 					marker=marker, show=show, xticker_rotate=xticker_rotate, yticker_rotate=yticker_rotate,
 					xtick_locations=xtick_locations, xtick_labels=xtick_labels, 
-					ytick_locations=ytick_locations, ytick_labels=ytick_labels, grid=grid)
+					ytick_locations=ytick_locations, ytick_labels=ytick_labels, grid=grid, fill_area=fill_area)
 
 	def add_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
 					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker=',', show=True, 
-					xticker_rotate=0, yticker_rotate=0, grid=False,
+					xticker_rotate=0, yticker_rotate=0, grid=False, fill_area=None,
 					xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None):
 		"""create a default 2D line plot
 		
@@ -70,6 +71,8 @@ class lines:
 		plt.xticks(ticks=xtick_locations, labels=xtick_labels, fontsize=ticker_fontsize, rotation=xticker_rotate)
 		plt.yticks(fontsize=ticker_fontsize, rotation=yticker_rotate, ticks=ytick_locations, labels=ytick_labels )
 		plt.grid(grid)
+		
+		if fill_area is not None: self.fill_area(fill_area[0],fill_area[1],fill_area[2])
 
 		self.set_title(title, fontsize=self.title_font)
 		self.set_xlabel(xlabel, fontsize=self.xfont)
