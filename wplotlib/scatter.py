@@ -12,7 +12,7 @@ class scatter:
 					xticker_rotate=0, yticker_rotate=0,
 					x_origin_axis_color=None, y_origin_axis_color=None,
 					xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None, 
-					title_font=16, xfont=16, yfont=16, figsize=None, show=True):
+					title_font=16, xfont=16, yfont=16, figsize=None, show=True, grid=False):
 		"""calculates the probability that "token" is found in spam emails
 		:param token: (str)
 		x_origin_axis_color	: 'k' is default black, or 'red'
@@ -31,17 +31,17 @@ class scatter:
 		if y_origin_axis_color is not None:
 			plt.axhline(y=0, color=x_origin_axis_color)
 
-		self.plot_scatter(X=X, Y=Y, title=title, xlabel=xlabel, ylabel=ylabel, imgText=imgText, outpath=outpath, 
+		self.add_scatter(X=X, Y=Y, title=title, xlabel=xlabel, ylabel=ylabel, imgText=imgText, outpath=outpath, 
 					subplot=subplot, xlim=xlim, ylim=ylim, xTextShift=xTextShift, yTextShift=yTextShift,
 					ticker_fontsize=ticker_fontsize, xTextLoc=xTextLoc, yTextLoc=yTextLoc, 
 					color=color, marker=marker, xticker_rotate=xticker_rotate, yticker_rotate=yticker_rotate,
-					xtick_locations=xtick_locations, xtick_labels=xtick_labels, 
+					xtick_locations=xtick_locations, xtick_labels=xtick_labels, grid=grid,
 					ytick_locations=ytick_locations, ytick_labels=ytick_labels, show=show)
 
-	def plot_scatter(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
+	def add_scatter(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
 					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker='x',
-					xticker_rotate=0, yticker_rotate=0, show=True,
+					xticker_rotate=0, yticker_rotate=0, show=True, grid=False,
 					xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None):
 		"""create a default 2D line plot
 		
@@ -80,6 +80,7 @@ class scatter:
 		plt.xticks(ticks=xtick_locations, labels=xtick_labels, fontsize=ticker_fontsize, rotation=xticker_rotate)
 		plt.yticks(fontsize=ticker_fontsize, rotation=yticker_rotate, ticks=ytick_locations, labels=ytick_labels )
 
+		plt.grid(grid)
 		if xlim is not None: plt.xlim(xlim)
 		if ylim is not None: plt.ylim(ylim)
 		

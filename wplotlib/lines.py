@@ -11,7 +11,7 @@ class lines:
 					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker=',', show=True, 
 					xticker_rotate=0, yticker_rotate=0,
 					xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None, 
-					title_font=16, xfont=16, yfont=16, figsize=None):
+					title_font=16, xfont=16, yfont=16, figsize=None, grid=False):
 		"""calculates the probability that "token" is found in spam emails
 		
 		:param token: (str)
@@ -27,17 +27,17 @@ class lines:
 
 		if figsize is not None: plt.figure(figsize=figsize)
 
-		self.plot_line(X=X, Y=Y, title=title, xlabel=xlabel, ylabel=ylabel, imgText=imgText, outpath=outpath, 
+		self.add_line(X=X, Y=Y, title=title, xlabel=xlabel, ylabel=ylabel, imgText=imgText, outpath=outpath, 
 					subplot=subplot, xlim=xlim, ylim=ylim, xTextShift=xTextShift, yTextShift=yTextShift,
 					ticker_fontsize=ticker_fontsize, xTextLoc=xTextLoc, yTextLoc=yTextLoc, color=color, 
 					marker=marker, show=show, xticker_rotate=xticker_rotate, yticker_rotate=yticker_rotate,
 					xtick_locations=xtick_locations, xtick_labels=xtick_labels, 
-					ytick_locations=ytick_locations, ytick_labels=ytick_labels)
+					ytick_locations=ytick_locations, ytick_labels=ytick_labels, grid=grid)
 
-	def plot_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
+	def add_line(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
 					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker=',', show=True, 
-					xticker_rotate=0, yticker_rotate=0,
+					xticker_rotate=0, yticker_rotate=0, grid=False,
 					xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None):
 		"""create a default 2D line plot
 		
@@ -67,6 +67,7 @@ class lines:
 		#plt.tick_params(axis='both', which='both', labelsize=ticker_fontsize)
 		plt.xticks(ticks=xtick_locations, labels=xtick_labels, fontsize=ticker_fontsize, rotation=xticker_rotate)
 		plt.yticks(fontsize=ticker_fontsize, rotation=yticker_rotate, ticks=ytick_locations, labels=ytick_labels )
+		plt.grid(grid)
 
 		self.set_title(title, fontsize=self.title_font)
 		self.set_xlabel(xlabel, fontsize=self.xfont)
