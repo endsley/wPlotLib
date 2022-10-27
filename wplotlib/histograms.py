@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 
+import os
+import sys
+if os.path.exists('/home/chieh/code/wuML'):
+	sys.path.insert(0,'/home/chieh/code/wuml')
+
 import numpy as np
 import matplotlib.pyplot as plt
 import wuml
