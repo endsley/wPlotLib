@@ -10,12 +10,13 @@ class scatter:
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
 					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker='x',
 					xticker_rotate=0, yticker_rotate=0,
-					x_origin_axis_color=None, y_origin_axis_color=None,
+					vertical_axis_loc=None, horizontal_axis_loc=None,
+					vertical_axis_color='k', horizontal_axis_color='k',
 					xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None, 
 					title_font=16, xfont=16, yfont=16, figsize=None, show=True, grid=False):
 		"""calculates the probability that "token" is found in spam emails
 		:param token: (str)
-		x_origin_axis_color	: 'k' is default black, or 'red'
+		vertical_axis_color	: 'k' is default black, or 'red'
 		y_origin_axis_color
 		:return: (float) probability "token" is spam based on training emails
 		"""
@@ -25,22 +26,21 @@ class scatter:
 		self.already_called_plot_line = False
 		if figsize is not None: plt.figure(figsize=figsize)
 
-		#plt.grid(True, which='both')
-		if x_origin_axis_color is not None:
-			plt.axvline(x=0, color=x_origin_axis_color)
-		if y_origin_axis_color is not None:
-			plt.axhline(y=0, color=x_origin_axis_color)
 
 		self.add_scatter(X=X, Y=Y, title=title, xlabel=xlabel, ylabel=ylabel, imgText=imgText, outpath=outpath, 
 					subplot=subplot, xlim=xlim, ylim=ylim, xTextShift=xTextShift, yTextShift=yTextShift,
 					ticker_fontsize=ticker_fontsize, xTextLoc=xTextLoc, yTextLoc=yTextLoc, 
 					color=color, marker=marker, xticker_rotate=xticker_rotate, yticker_rotate=yticker_rotate,
 					xtick_locations=xtick_locations, xtick_labels=xtick_labels, grid=grid,
+					vertical_axis_loc=vertical_axis_loc, horizontal_axis_loc=horizontal_axis_loc,
+					vertical_axis_color=vertical_axis_color, horizontal_axis_color=horizontal_axis_color,
 					ytick_locations=ytick_locations, ytick_labels=ytick_labels, show=show)
 
 	def add_scatter(self, X, Y, title, xlabel, ylabel, imgText=None, outpath=None, 
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
 					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker='x',
+					vertical_axis_loc=None, horizontal_axis_loc=None,
+					vertical_axis_color='k', horizontal_axis_color='k',
 					xticker_rotate=0, yticker_rotate=0, show=True, grid=False,
 					xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None):
 		"""create a default 2D line plot
@@ -69,6 +69,12 @@ class scatter:
 
 		if X is None: X = np.arange(1, len(Y)+1)
 		if subplot is not None: plt.subplot(subplot)
+
+
+		if vertical_axis_loc is not None:
+			plt.axvline(x=vertical_axis_loc, color=vertical_axis_color)
+		if horizontal_axis_loc is not None:
+			plt.axhline(y=horizontal_axis_loc, color=horizontal_axis_color)
 
 		self.add_plot(X,Y, color, marker)
 		self.set_title(title, fontsize=self.title_font)
