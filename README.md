@@ -13,6 +13,7 @@ pip install wplotlib
 [Draw heatmap](https://github.com/endsley/wPlotLib/blob/main/examples/ipynb/heatmap.ipynb) \
 [Plot out clustering Results](https://github.com/endsley/wPlotLib/blob/main/examples/ipynb/plot_cluster_results.ipynb) \
 [Bar Chart](https://github.com/endsley/wPlotLib/blob/main/examples/ipynb/bar.ipynb) \
-[3D mesh](https://github.com/endsley/wPlotLib/blob/main/examples/ipynb/mesh3d.ipynb) 
+[3D mesh](https://github.com/endsley/wPlotLib/blob/main/examples/ipynb/mesh3d.ipynb) \ 
+[3D scatter](https://github.com/endsley/wPlotLib/blob/main/examples/ipynb/scatter3d.ipynb) 
 
 
