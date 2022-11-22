@@ -10,6 +10,8 @@ class lines:
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
 					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker=',', show=True, 
 					xticker_rotate=0, yticker_rotate=0,
+					vertical_axis_loc=None, horizontal_axis_loc=None,
+					vertical_axis_color='k', horizontal_axis_color='k',
 					xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None, 
 					title_font=16, xfont=16, yfont=16, figsize=None, grid=False, fill_area=None):
 		"""calculates the probability that "token" is found in spam emails
@@ -34,6 +36,8 @@ class lines:
 					subplot=subplot, xlim=xlim, ylim=ylim, xTextShift=xTextShift, yTextShift=yTextShift,
 					ticker_fontsize=ticker_fontsize, xTextLoc=xTextLoc, yTextLoc=yTextLoc, color=color, 
 					marker=marker, show=show, xticker_rotate=xticker_rotate, yticker_rotate=yticker_rotate,
+					vertical_axis_loc=vertical_axis_loc, horizontal_axis_loc=horizontal_axis_loc,
+					vertical_axis_color=vertical_axis_color, horizontal_axis_color=horizontal_axis_color,
 					xtick_locations=xtick_locations, xtick_labels=xtick_labels, 
 					ytick_locations=ytick_locations, ytick_labels=ytick_labels, grid=grid, fill_area=fill_area)
 
@@ -41,6 +45,8 @@ class lines:
 					subplot=None, xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
 					ticker_fontsize=9, xTextLoc=None, yTextLoc=None, color='blue', marker=',', show=True, 
 					xticker_rotate=0, yticker_rotate=0, grid=False, fill_area=None,
+					vertical_axis_loc=None, horizontal_axis_loc=None,
+					vertical_axis_color='k', horizontal_axis_color='k',
 					xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None):
 		"""create a default 2D line plot
 		
@@ -82,6 +88,11 @@ class lines:
 		if xlim is not None: plt.xlim(xlim)
 		if ylim is not None: plt.ylim(ylim)
 		
+		if vertical_axis_loc is not None:
+			plt.axvline(x=vertical_axis_loc, color=vertical_axis_color)
+		if horizontal_axis_loc is not None:
+			plt.axhline(y=horizontal_axis_loc, color=horizontal_axis_color)
+
 		plt.tight_layout()
 		if subplot is None:
 			if outpath is not None: plt.savefig(outpath)
