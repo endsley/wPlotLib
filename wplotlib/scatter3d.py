@@ -78,11 +78,11 @@ class scatter3d:
 
 		ax.scatter(X, Y, Z, c=color, marker=marker)
 
+		ax.set_title(title, fontsize=title_font)
+		ax.tick_params(axis='both', which='both', labelsize=ticker_fontsize)
 		ax.set_xlabel(xlabel, fontsize=self.xfont)
 		ax.set_ylabel(ylabel, fontsize=self.yfont)
 		ax.set_zlabel(zlabel, fontsize=self.zfont)
-		ax.set_title(title, fontsize=title_font)
-		ax.tick_params(axis='both', which='both', labelsize=ticker_fontsize)
 
 		if xlim is not None: ax.axes.set_xlim3d(left=xlim[0], right=xlim[1])
 		if ylim is not None: ax.axes.set_ylim3d(bottom=ylim[0], top=ylim[1]) 

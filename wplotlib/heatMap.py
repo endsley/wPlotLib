@@ -9,7 +9,9 @@ from numpy import genfromtxt
 from sklearn.cluster import SpectralClustering
 from scipy.sparse import coo_matrix
 from sklearn.utils import shuffle
+import warnings
 
+warnings.filterwarnings("ignore")
 
 class heatMap:
 	def __init__(self, kernel, title='', xlabel='Features', ylabel='Samples', ticker_fontsize=9,
