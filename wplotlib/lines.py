@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 from matplotlib import pyplot as plt
-import matplotlib
 import numpy as np
 
+import warnings
+warnings.filterwarnings("ignore")
+
+import matplotlib
 
 class lines:
 	"""A class that generates basic line plots"""
@@ -20,7 +23,10 @@ class lines:
 						xlim=(0,5) ylim=(0,5)
 		:return: (float) probability "token" is spam based on training emails
 		"""
-		font = {'family' : 'normal', 'weight' : 'bold', 'size'   : title_font}
+
+
+		font_family = matplotlib.rcParams['font.family']
+		font = {'family' : font_family[0], 'weight' : 'bold', 'size'   : title_font}
 		matplotlib.rc('font', **font)
 
 		self.title_font = title_font
@@ -94,10 +100,9 @@ class lines:
 			plt.axhline(y=horizontal_axis_loc, color=horizontal_axis_color)
 
 		plt.tight_layout()
-		if subplot is None:
-			if outpath is not None: plt.savefig(outpath)
-			if show: plt.show()
-
+		if subplot is None and show == True: plt.show()
+		if outpath is not None: plt.savefig(outpath)
+	
 
 	def add_text(self, X, Y, textstr, α=0.05, β=0.95, xTextLoc=None, yTextLoc=None):
 		if textstr is None: return

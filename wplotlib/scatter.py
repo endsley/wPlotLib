@@ -90,10 +90,10 @@ class scatter:
 		if xlim is not None: plt.xlim(xlim)
 		if ylim is not None: plt.ylim(ylim)
 		
-		if subplot is None and outpath is None and show: 
-			plt.tight_layout()
-			plt.show()
-		elif outpath is not None: plt.savefig(outpath)
+		plt.tight_layout()
+		if subplot is None and show == True: plt.show()
+		if outpath is not None: plt.savefig(outpath)
+
 
 	def add_text(self, X, Y, textstr, α=0.05, β=0.95, xTextLoc=None, yTextLoc=None):
 		if textstr is None: return

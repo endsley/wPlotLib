@@ -4,14 +4,16 @@
 import numpy as np; np.random.seed(0)
 import seaborn as sns
 from matplotlib import pyplot as plt
-import matplotlib
 from numpy import genfromtxt
 from sklearn.cluster import SpectralClustering
 from scipy.sparse import coo_matrix
 from sklearn.utils import shuffle
-import warnings
 
+import warnings
 warnings.filterwarnings("ignore")
+
+import matplotlib
+
 
 class heatMap:
 	def __init__(self, kernel, title='', xlabel='Features', ylabel='Samples', ticker_fontsize=9,
@@ -21,7 +23,8 @@ class heatMap:
 						xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None, figsize=None):
 
 		self.plot_font_size = 4
-		font = {'family' : 'normal', 'weight' : 'bold', 'size'   : self.plot_font_size}
+		font_family = matplotlib.rcParams['font.family']
+		font = {'family' : font_family[0], 'weight' : 'bold', 'size'   : self.plot_font_size}
 		matplotlib.rc('font', **font)
 		self.cluster_by_id = {}
 		self.cluster_by_name = {}
@@ -127,11 +130,9 @@ class heatMap:
 			if ylabel != '': plt.ylabel(ylabel, fontsize=fsize)
 		
 
-			if subplot is None:
-				if outpath is not None: plt.savefig(outpath)
-				if show: 
-					plt.tight_layout()
-					plt.show()
+			plt.tight_layout()
+			if subplot is None and show == True: plt.show()
+			if outpath is not None: plt.savefig(outpath)
 
 		return plt
 

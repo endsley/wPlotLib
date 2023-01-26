@@ -26,7 +26,9 @@ class mesh3d:
 		:param token: (str)
 		:return: (float) probability "token" is spam based on training emails
 		"""
-		font = {'family' : 'normal', 'weight' : 'bold', 'size'   : title_font}
+
+		font_family = matplotlib.rcParams['font.family']
+		font = {'family' : font_family[0], 'weight' : 'bold', 'size'   : title_font}
 		matplotlib.rc('font', **font)
 
 		self.title_font = title_font
