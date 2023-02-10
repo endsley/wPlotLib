@@ -15,6 +15,9 @@ class histograms:
 			path=None, subplot=None, ylogScale=False, show=True, normalize=False, 
 			title_font=12, xfont=12, yfont=12, figsize=None):
 
+		try: self.disable = sys.argv[1]
+		except: self.disable = ''
+
 		x = wuml.ensure_numpy(x)
 		self.title_font = title_font
 		self.xfont = xfont
@@ -60,9 +63,11 @@ class histograms:
 	
 		if subplot is None:
 			if path is not None: plt.savefig(path)
-			if show: plt.show()
+			if show: 
+				if self.disable != 'disabled': plt.show()
 
 	def show(self, save_path=None):
-		if save_path is None: plt.show()
+		if save_path is None: 
+			if self.disable != 'disabled': plt.show()
 		else: plt.savefig(save_path)
 

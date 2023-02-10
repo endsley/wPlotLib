@@ -1,8 +1,15 @@
 #!/usr/bin/env python
+import os
+import sys
+#if os.path.exists('/home/chieh/code/wPlotLib'):
+#	sys.path.insert(0,'/home/chieh/code/wPlotLib')
+if os.path.exists('/home/chieh/code/wuML'):
+	sys.path.insert(0,'/home/chieh/code/wuML')
+
+import wuml
+import warnings
 from matplotlib import pyplot as plt
 import numpy as np
-
-import warnings
 warnings.filterwarnings("ignore")
 
 import matplotlib
@@ -24,6 +31,8 @@ class lines:
 		:return: (float) probability "token" is spam based on training emails
 		"""
 
+		try: self.disable = sys.argv[1]
+		except: self.disable = ''
 
 		font_family = matplotlib.rcParams['font.family']
 		font = {'family' : font_family[0], 'weight' : 'bold', 'size'   : title_font}
@@ -100,7 +109,9 @@ class lines:
 			plt.axhline(y=horizontal_axis_loc, color=horizontal_axis_color)
 
 		plt.tight_layout()
-		if subplot is None and show == True: plt.show()
+		if subplot is None and show == True: 
+			if self.disable != 'disabled': plt.show()
+
 		if outpath is not None: plt.savefig(outpath)
 	
 
@@ -155,7 +166,8 @@ class lines:
 			self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
 
 		plt.tight_layout()
-		if save_path is None: plt.show()
+		if save_path is None: 
+			if self.disable != 'disabled': plt.show()
 		else: plt.savefig(save_path)
 
 
@@ -167,7 +179,9 @@ class lines:
 		
 		plt.plot(x, y, 'k-')
 		plt.fill_between(x, y-error, y+error)
-		if show: plt.show()
+		if show: 
+			if self.disable != 'disabled': plt.show()
+			plt.show()
 
 
 if __name__ == "__main__":

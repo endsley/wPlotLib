@@ -8,7 +8,7 @@ from numpy import genfromtxt
 from sklearn.cluster import SpectralClustering
 from scipy.sparse import coo_matrix
 from sklearn.utils import shuffle
-
+import sys
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -21,6 +21,9 @@ class heatMap:
 						center=None, linewidths=0, cmap=None, outpath='', subplot=None,
 						xticker_rotate=0, yticker_rotate=0, sort_kernel_based_on_label=False, label=None, 
 						xtick_locations=None, xtick_labels=None, ytick_locations=None, ytick_labels=None, figsize=None):
+
+		try: self.disable = sys.argv[1]
+		except: self.disable = ''
 
 		self.plot_font_size = 4
 		font_family = matplotlib.rcParams['font.family']
@@ -95,7 +98,7 @@ class heatMap:
 			plt.yticks(fontsize=ticker_fontsize, rotation=yticker_rotate)
 		
 			plt.tight_layout()
-			plt.show() 
+			if self.disable != 'disabled': plt.show()
 		else:
 			
 			kernel = np.flipud(kernel)
@@ -131,14 +134,15 @@ class heatMap:
 		
 
 			plt.tight_layout()
-			if subplot is None and show == True: plt.show()
+			if subplot is None and show == True: 
+				if self.disable != 'disabled': plt.show()
 			if outpath is not None: plt.savefig(outpath)
 
 		return plt
 
 	def show(self):
 		plt.tight_layout()
-		plt.show()
+		if self.disable != 'disabled': plt.show()
 
 if __name__ == "__main__":
 	#	Heat Map ticker

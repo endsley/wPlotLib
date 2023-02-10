@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+import os
+import sys
+if os.path.exists('/home/chieh/code/wuML'):
+	sys.path.insert(0,'/home/chieh/code/wuml')
 
 from matplotlib import pyplot as plt
 import numpy as np
@@ -20,6 +24,9 @@ class scatter:
 		y_origin_axis_color
 		:return: (float) probability "token" is spam based on training emails
 		"""
+		try: self.disable = sys.argv[1]
+		except: self.disable = ''
+
 		self.title_font = title_font
 		self.xfont = xfont
 		self.yfont = yfont
@@ -91,7 +98,8 @@ class scatter:
 		if ylim is not None: plt.ylim(ylim)
 		
 		plt.tight_layout()
-		if subplot is None and show == True: plt.show()
+		if subplot is None and show == True: 
+			if self.disable != 'disabled': plt.show()
 		if outpath is not None: plt.savefig(outpath)
 
 
@@ -148,7 +156,7 @@ class scatter:
 		plt.tight_layout()
 		if save_path is None: 
 			plt.tight_layout()
-			plt.show()
+			if self.disable != 'disabled': plt.show()
 		else: plt.savefig(save_path)
 
 
@@ -162,7 +170,7 @@ class scatter:
 		plt.fill_between(x, y-error, y+error)
 		if show: 
 			plt.tight_layout()
-			plt.show()
+			if self.disable != 'disabled': plt.show()
 
 
 if __name__ == "__main__":

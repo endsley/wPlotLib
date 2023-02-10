@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 from matplotlib import pyplot as plt
 import numpy as np
+import sys
 
 
 class bar:
@@ -17,6 +18,8 @@ class bar:
 		:param token: (str)
 		:return: (float) probability "token" is spam based on training emails
 		"""
+		try: self.disable = sys.argv[1]
+		except: self.disable = ''
 
 		self.title_font = title_font
 		self.xfont = xfont
@@ -77,7 +80,8 @@ class bar:
 		plt.tight_layout()
 		if subplot is None:
 			if outpath is not None: plt.savefig(outpath)
-			if show: plt.show()
+			if show: 
+				if self.disable != 'disabled': plt.show()
 
 	def add_text(self, X, Y, textstr, α=0.05, β=0.95, xTextLoc=None, yTextLoc=None):
 		if textstr is None: return
@@ -116,7 +120,8 @@ class bar:
 		if imgText is not None: 
 			self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)
 
-		if save_path is None: plt.show()
+		if save_path is None: 
+			if self.disable != 'disabled': plt.show()
 		else: plt.savefig(save_path)
 
 
