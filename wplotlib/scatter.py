@@ -117,7 +117,8 @@ class scatter:
 		props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
 		plt.text(xLoc, yLoc, textstr, fontsize=14, verticalalignment='top', bbox=props)
 
-
+	def clear_image(self):
+		plt.clf()
 
 	def set_title(self, title, fontsize=16):
 		plt.title(title, fontsize=fontsize)
@@ -142,6 +143,10 @@ class scatter:
 		self.Y = Y
 
 		plt.scatter(X, Y, color=color, marker=marker)
+
+	def clear_image(self):
+		plt.clf()
+
 
 	def show(self, save_path=None, title=None, xlabel=None, ylabel=None, imgText=None, 
 					xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,

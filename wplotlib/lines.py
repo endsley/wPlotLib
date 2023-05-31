@@ -170,6 +170,9 @@ class lines:
 			if self.disable != 'disabled': plt.show()
 		else: plt.savefig(save_path)
 
+	def clear_image(self):
+		plt.clf()
+
 
 	def plot_line_with_error_area(x, y, error, show=False):
 		#x = np.linspace(0, 30, 30)

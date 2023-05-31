@@ -112,6 +112,9 @@ class scatter3d:
 		self.ax.plot_surface(X, Y, Z, rstride=8, cstride=8, alpha=0.2)
 		#ax.plot_surface(X2, Z2, Y2, rstride=8, cstride=8, alpha=0.2)
 
+	def clear_image(self):
+		plt.clf()
+
 
 
 #		self.add_text(X, Y, imgText, α=xTextShift, β=yTextShift, xTextLoc=xTextLoc, yTextLoc=yTextLoc)

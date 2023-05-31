@@ -110,6 +110,10 @@ class bar:
 	def set_ylabel(self, ylabel, fontsize=16):
 		plt.ylabel(ylabel, fontsize=fontsize)
 
+	def clear_image(self):
+		plt.clf()
+
+
 	def show(self, save_path=None, title=None, xlabel=None, ylabel=None, imgText=None, 
 					xlim=None, ylim=None, xTextShift=0.05, yTextShift=0.95,
 					xTextLoc=None, yTextLoc=None):

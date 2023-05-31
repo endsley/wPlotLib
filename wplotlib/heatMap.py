@@ -140,6 +140,10 @@ class heatMap:
 
 		return plt
 
+	def clear_image(self):
+		plt.clf()
+
+
 	def show(self):
 		plt.tight_layout()
 		if self.disable != 'disabled': plt.show()

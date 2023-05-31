@@ -66,6 +66,10 @@ class histograms:
 			if show: 
 				if self.disable != 'disabled': plt.show()
 
+	def clear_image(self):
+		plt.clf()
+
+
 	def show(self, save_path=None):
 		if save_path is None: 
 			if self.disable != 'disabled': plt.show()

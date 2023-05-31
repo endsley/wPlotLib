@@ -66,6 +66,9 @@ class plot_clusters:
 		props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
 		plt.text(xLoc, yLoc, textstr, fontsize=14, verticalalignment='top', bbox=props)
 
+	def clear_image(self):
+		plt.clf()
+
 
 	def show(self):
 		#plt.subplots_adjust(left=None, bottom=None, right=None, top=None, wspace=None, hspace=None)

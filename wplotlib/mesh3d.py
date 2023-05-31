@@ -176,6 +176,9 @@ class mesh3d:
 		plt.fill_between(x, y-error, y+error)
 		if show: plt.show()
 
+	def clear_image(self):
+		plt.clf()
+
 
 if __name__ == "__main__":
 #	# Example 1
